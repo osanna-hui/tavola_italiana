@@ -3,7 +3,7 @@
 // Business Delegate
 
 // load all scripts into memory
-require_once('init.php');
+require_once('../init.php');
 loadScripts();
 
     $data = array("status" => "not set!");

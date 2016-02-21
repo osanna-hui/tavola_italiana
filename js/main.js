@@ -21,7 +21,7 @@ $(document).ready(function() {
         //console.log("Login data to send: ", formData);
 
         $.ajax({
-            url: "../mod/login.php",
+            url: "./mod/login.php",
             type: "POST",
             dataType: "JSON",
             data: formData,
@@ -76,7 +76,7 @@ $(document).ready(function() {
         //console.log("Logout data to send: ", formData);
 
         $.ajax({
-            url: "../mod/logout.php",
+            url: "./mod/logout.php",
             type: "POST",
             dataType: "JSON",
             data: formData,

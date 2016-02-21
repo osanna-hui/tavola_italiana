@@ -27,7 +27,7 @@ class UserManager {
 
     public function findUser($usr = "", $pwd = "") {
         $params = array(":usr" => $usr, ":pwd" => $pwd);
-        $sql = "SELECT * FROM user WHERE user_name = :usr AND password = :pwd";
+        $sql = "SELECT * FROM admins WHERE username = :usr AND password = :pwd";
 
         $rows = $this->db->query($sql, $params);
         if(count($rows) > 0) {
