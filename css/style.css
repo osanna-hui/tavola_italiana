@@ -65,14 +65,16 @@ input[type="button"]:active, input[type="reset"]:active {
 
 #nav {
   background-color: rgb(143, 28, 30);
-    color: rgb(255, 255, 240);
-    text-align: center;
+  color: rgb(255, 255, 240);
+  text-align: center;
 }
 
 #footer {
-  background-color: #aabbcc;
+  background-color: rgb(143, 28, 30);
+  color: rgb(255, 255, 240);
   clear: both;
   padding-top: 20px;
+  text-align: center;
 }
 
 #logoutFormContainer, #loginFormContainer {
