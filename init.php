@@ -6,6 +6,8 @@ function loadScripts() {
 $scripts = array('DBConnector.php',
                  'Messages.php',
                  'Parameters.php',
+                 'ProductManager.php',
+                 'ShoppingCartManager.php',
                  'Session.php',
                  'ShowUserProfileAction.php',
                  'UserLoginAction.php',
