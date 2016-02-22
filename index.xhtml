@@ -72,34 +72,40 @@
 
       </div>
 
-      <div id="loginFormContainer" tal:condition="php: !Session::get('isLoggedIn')">
+      <div id="loginFormContainer" class="container" tal:condition="php: !Session::get('isLoggedIn')">
+        
+          <form id="loginForm" class="form-signin">
+            <fieldset>
+              <h2>ADMIN LOGIN</h2>
+              <div class="input-group">
+                <span class="input-group-addon" id="sizing-addon1"><span class="glyphicon glyphicon-user"></span></span>
+                <input id="user_name" class="form-control" type="text" placeholder="USERNAME" name="user_name" autofocus="autofocus" required="required" aria-describedby="sizing-addon1"/><br/>
+              </div>
+              <div class="input-group">
+                <span class="input-group-addon" id="sizing-addon2"><span class="glyphicon glyphicon-lock"></span></span>
+                <input id="password" class="form-control" type="password" placeholder="PASSWORD" name="password" required="required" aria-describedby="sizing-addon2"/><br/>
+              </div>
 
-        <form id="loginForm">
-          <fieldset>
-            <legend>ADMIN LOGIN</legend>
-            <input id="user_name" type="text" placeholder="USERNAME" name="user_name" autofocus="autofocus" required="required"/><br/><br/>
+              <input id="loginbutton" class="btn btn-lg btn-default btn-block" type="button" value="ADMIN LOGIN"/>
 
-            <input id="password" type="password" placeholder="PASSWORD" name="password" required="required"/><br/><br/>
+            </fieldset>
+          </form>
 
-            <input id="loginbutton" type="button" value="ADMIN LOGIN"/>
-            <input id="resetLoginForm" type="reset" value="RESET"/>
-
-          </fieldset>
-        </form>
+          <button id="as_customer" class="btn btn-lg btn-default btn-block">CONTINUE AS CUSTOMER</button>
 
       </div>
 
 
 <!-- tal:condition="exists: isLoggedIn" -->
 
-      <div id="logoutFormContainer" tal:condition="php: Session::get('isLoggedIn')">
+      <div id="logoutFormContainer" class="container" tal:condition="php: Session::get('isLoggedIn')">
 
-        <form id="logoutForm">
+        <form id="logoutForm" class="form-signin">
           <fieldset>
-            <legend>Logout Form</legend>
-            <label for="password">Password: </label>
-            <input id="logoutbutton" type="button" value="Logout"/>
-            <input type="hidden" value="logout" name="logoutButton"/>
+            <h2>LOGOUT</h2>
+            
+            <input id="logoutbutton" class="btn btn-lg btn-default btn-block" type="button" value="Logout"/>
+            <input type="hidden" value="LOGOUT" name="logoutButton"/>
           </fieldset>
         </form>
 
@@ -118,6 +124,7 @@
 
 
     <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js" integrity="sha384-0mSbJDEHialfmuBBQP6A4Qrprq5OVfW37PRR3j5ELqxss1yVqOtnepnHVP9aJ7xS" crossorigin="anonymous"></script>
     <script src="./js/main.js"></script>
 
     <footerReplace metal:use-macro="/templating/footer.xhtml/page_footer">

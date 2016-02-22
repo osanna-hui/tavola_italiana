@@ -42,10 +42,7 @@ input[type="button"]:active, input[type="reset"]:active {
   width: 60px;
 }
 
-#loginFormContainer {
-  float: left;
 
-}
 
 #navItems li {
   display: inline-block;
@@ -78,7 +75,7 @@ input[type="button"]:active, input[type="reset"]:active {
 }
 
 #logoutFormContainer, #loginFormContainer {
-  width: 200px;
+  width: 50%;
 }
 
 .info {

@@ -23,7 +23,7 @@ $(document).ready(function() {
         $.ajax({
             url: "./mod/login.php",
             type: "POST",
-            dataType: "JSON",
+            dataType: "HTML",
             data: formData,
             success: function(returnedData) {
                 console.log("Login data returned: ", returnedData);
@@ -45,7 +45,7 @@ $(document).ready(function() {
 
                 } else {
                     // you're in, show profile
-                    console.log(returnedData['user']);
+                    console.log(returnedData['user_name']);
                     // THIS SECTION HAS TO BE THE SAME AS index.html, LINE 21
                     $("#profileContainer").html("<div id='userProfile'>"
                         + "<h2>User Profile (only visible when logged in):</h2>\n"

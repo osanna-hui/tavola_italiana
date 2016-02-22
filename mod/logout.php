@@ -1,7 +1,7 @@
 <?php
 
 // load all scripts into memory
-require_once('init.php');
+require_once('../init.php');
 loadScripts();
 
 
