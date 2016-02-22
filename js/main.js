@@ -23,7 +23,7 @@ $(document).ready(function() {
         $.ajax({
             url: "./mod/login.php",
             type: "POST",
-            dataType: "HTML",
+            dataType: "JSON",
             data: formData,
             success: function(returnedData) {
                 console.log("Login data returned: ", returnedData);
