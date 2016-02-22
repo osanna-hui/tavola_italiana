@@ -40,5 +40,4 @@ loadScripts();
 
     // for objects do this:
     // json_encode(get_object_vars($your_object));
-
 ?>

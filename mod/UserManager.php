@@ -37,7 +37,6 @@ class UserManager {
         return null;
     }
 
-
 }
 
 ?>

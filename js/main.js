@@ -63,7 +63,6 @@ $(document).ready(function() {
 
                 }
 
-
             },
             error: function(jqXHR, textStatus, errorThrown) {
                 console.log("AJAX Error", textStatus);
@@ -93,9 +92,6 @@ $(document).ready(function() {
             }
         });
     }
-
-    
-
 
     // login event
     $("#loginbutton").click(doLogin);

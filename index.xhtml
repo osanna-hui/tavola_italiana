@@ -95,8 +95,7 @@
 
       </div>
 
-
-<!-- tal:condition="exists: isLoggedIn" -->
+<!-- tal:condition="exists: isLoggedIn" / only shows up if admin is logged in-->
 
       <div id="logoutFormContainer" class="container" tal:condition="php: Session::get('isLoggedIn')">
 
