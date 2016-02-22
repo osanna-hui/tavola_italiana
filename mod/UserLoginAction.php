@@ -35,8 +35,8 @@ class UserLoginAction {
                 $usr = $this->userManager->findUser($user_name, $user_password);
                 if($usr != null) {
                     // log user in
-                    Session::set("user_name", $usr['user_name']);
-                    Session::set("id", $usr['ID']);
+                    Session::set("user_name", $usr['username']);
+                    Session::set("id", $usr['admin_id']);
                     Session::set("isLoggedIn", true);
                     return $usr;
 
@@ -51,6 +51,7 @@ class UserLoginAction {
         }
 
     }
+
 
 }
 

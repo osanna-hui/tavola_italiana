@@ -40,7 +40,7 @@ loadScripts();
         // now add the variables for processing and that you created from above:
        $template->page_title = "Tavola Italiana";
         $template->profile = $profile;
-
+        //var_dump ($profile);
         // messages last
         $template->messages = Messages::getMessages();
 

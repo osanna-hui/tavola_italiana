@@ -18,7 +18,7 @@ $(document).ready(function() {
     function doLogin() {
 
         var formData = ConvertFormToJSON("#loginForm");
-        //console.log("Login data to send: ", formData);
+        console.log("Login data to send: ", formData);
 
         $.ajax({
             url: "./mod/login.php",
@@ -45,13 +45,16 @@ $(document).ready(function() {
 
                 } else {
                     // you're in, show profile
-                    console.log(returnedData['user_name']);
+                    console.log(returnedData['user']['username']);
+                    location.reload();
+
                     // THIS SECTION HAS TO BE THE SAME AS index.html, LINE 21
+                    /*
                     $("#profileContainer").html("<div id='userProfile'>"
                         + "<h2>User Profile (only visible when logged in):</h2>\n"
-                        + "<span><i>login: </i>" + returnedData['user']['user_name'] + "</span> "
-                        + "<span><i>first name: </i>" + returnedData['user']['first_name'] + "</span> "
-                        + "<span><i>last name: </i>" + returnedData['user']['last_name'] + "</span>"
+                        + "<span><i>login: </i>" + returnedData['user']['username'] + "</span> "
+                        + "<span><i>first name: </i>" + returnedData['user']['firstName'] + "</span> "
+                        + "<span><i>last name: </i>" + returnedData['user']['lastName'] + "</span>"
                         +"<br/><br/><br/></div>");
 
                     // remove login form
@@ -60,8 +63,9 @@ $(document).ready(function() {
                     // create logout form
                     $("#loginFormContainer").after('<div id="logoutFormContainer"><form id="logoutForm"><fieldset><legend>Logout Form</legend><label for="password">Password: </label><input id="logoutbutton" type="button" value="Logout"/><input type="hidden" value="logout" name="logoutButton"/></fieldset></form></div>');
                     $("#logoutbutton").bind("click", doLogout);
-
+                    */
                 }
+
 
             },
             error: function(jqXHR, textStatus, errorThrown) {
@@ -92,6 +96,9 @@ $(document).ready(function() {
             }
         });
     }
+
+    
+
 
     // login event
     $("#loginbutton").click(doLogin);
