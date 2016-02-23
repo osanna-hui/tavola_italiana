@@ -34,8 +34,8 @@ $(document).ready(function() {
                     for(msg in msgs) {
                         //console.log(msgs[msg]['text']);
 
-                        $("#AJAXMessages").html("<li class='" + msgs[msg]['type']
-                            + "'" + ">" + msgs[msg]['text'] + "</li>");
+                        $("#AJAXMessages").html("<span class='" + msgs[msg]['type']
+                            + "'" + ">" + msgs[msg]['text'] + "</span>");
                     }
 
 

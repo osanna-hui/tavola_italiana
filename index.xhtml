@@ -73,10 +73,10 @@
       </div>
 
       <div id="loginFormContainer" class="container" tal:condition="php: !Session::get('isLoggedIn')">
-        
+        <img id="TI_logo" src="./img/TI_LOGO.png"/>
           <form id="loginForm" class="form-signin">
             <fieldset>
-              <h2 id="adminLoginTitle">ADMIN LOGIN</h2>
+              <h2 id="adminLoginTitle">LOGIN TO CONTINUE AS A REGISTERED ADMIN</h2>
               <div class="input-group">
                 <span class="input-group-addon" id="sizing-addon1"><span class="glyphicon glyphicon-user"></span></span>
                 <input id="user_name" class="form-control loginInput" type="text" placeholder="USERNAME" name="user_name" autofocus="autofocus" required="required" aria-describedby="sizing-addon1"/><br/>
@@ -91,7 +91,18 @@
             </fieldset>
           </form>
 
-          <button id="as_customer" class="btn btn-lg btn-default btn-block">CONTINUE AS CUSTOMER</button>
+          <div id="messages">
+            <span id="talMessages" tal:condition="php: count(messages) GT 0">
+              <span tal:repeat="msg messages" class="${msg/type}"><span tal:content="msg/text"></span></span>
+            </span>
+            <span id="AJAXMessages">
+            </span>
+          </div>      
+
+          <h3> -- OR -- </h3>
+          <h3>CONTINUE AS A CUSTOMER</h3>
+
+
 
       </div>
 
@@ -110,15 +121,7 @@
 
       </div>
 
-      <div id="messages">
-        <p>Messages:</p>
-        <ul id="talMessages" tal:condition="php: count(messages) GT 0">
-          <li tal:repeat="msg messages" class="${msg/type}"><span tal:content="msg/text"></span></li>
-        </ul>
-        <ul id="AJAXMessages">
-        </ul>
-      </div>
-      <br/><br/><br/>
+
     </div>
 
 
