@@ -1,7 +1,7 @@
 <?php
 
 require_once('./libs/PHPTAL-1.3.0/PHPTAL.php');
-require_once('init.php');
+require_once('./init.php');
 loadScripts();
 
     $data = array("status" => "not set!");
@@ -117,7 +117,7 @@ loadScripts();
         // render the whole page using PHPTAL
 
         // finally, create a new template object
-        $template = new PHPTAL('shopping-cart.xhtml');
+        $template = new PHPTAL('./index.xhtml');
 
         // now add the variables for processing and that you created from above:
        $template->page_title = "Tavola Italiana";
