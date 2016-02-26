@@ -8,13 +8,125 @@
   <body>
 
 
+
+
     <navReplace metal:use-macro="./templating/nav.xhtml/nav_bar">
     </navReplace>
 
 
+     <div id="loginDiv">
+
+
+
+      <div id="profileContainer">
+        <div id="userProfile" tal:condition="exists:profile">
+          <h2>User Profile</h2>
+          <span tal:content="profile/username"></span>
+          <span tal:content="profile/firstName"></span>
+          <span tal:content="profile/lastName"></span>
+          <br/><br/><br/>
+        </div>
+      </div>
+
+      <div id="shoppingCartContainer" tal:condition="php: Session::get('isLoggedIn')">
+
+        <table id="productTable">
+
+          <tr>
+            <th>Product</th>
+            <th>Quantity</th>
+            <th>Price</th>
+            <th>Add</th>
+          </tr>
+
+          <tr>
+            <td>Toaster</td>
+            <td><input data-sku-qty="sk-2843y" type="number" value="1" min="1" max="10" step="1"/></td>
+            <td>14.99</td>
+            <td><input data-sku-add="sk-2843y" type="button" value="Add"/></td>
+          </tr>
+          <tr>
+            <td>Napkins (200 pack)</td>
+            <td><input data-sku-qty="sk-327623z" type="number" value="1" min="1" max="10" step="1"/></td>
+            <td>3.99</td>
+            <td><input data-sku-add="sk-327623z" type="button" value="Add"/></td>
+          </tr>
+          <tr>
+            <td>Coffee Cup</td>
+            <td><input data-sku-qty="sk-438s3x" type="number" value="1" min="1" max="10" step="1"/></td>
+            <td>1.99</td>
+            <td><input data-sku-add="sk-438s3x" type="button" value="Add"/></td>
+          </tr>
+
+        </table>
+        <input type="button" value="Start Cart" id="startCart"/>
+        <input type="button" value="End Cart" id="endCart"/>
+        <h2>Cart Summary</h2>
+        <ul id="shoppingCart">
+          <li data-item-qty="1" data-item-sku="sk-438s3x">Coffee Cup (1) &#160;
+            <input type="button" data-remove-button="remove" value="X"/></li>
+        </ul>
+        <p id="cartTotal">Total: </p>
+        <input type="button" value="checkout" id="checkout"/>
+        <span style="display: inline; font-size: 8pt;"><i>You'll see taxes and other shipping costs (ha ha) during checkout.</i></span>
+
+      </div>
+
+      <div id="loginFormContainer" class="container" tal:condition="php: !Session::get('isLoggedIn')">
+        <img id="TI_logo" src="./img/TI_LOGO.png"/>
+          <form id="loginForm" class="form-signin">
+            <fieldset>
+              <h2 id="adminLoginTitle">LOGIN TO CONTINUE AS A REGISTERED ADMIN</h2>
+              <div class="input-group">
+                <span class="input-group-addon" id="sizing-addon1"><span class="glyphicon glyphicon-user"></span></span>
+                <input id="user_name" class="form-control loginInput" type="text" placeholder="USERNAME" name="user_name" autofocus="autofocus" required="required" aria-describedby="sizing-addon1"/><br/>
+              </div>
+              <div class="input-group">
+                <span class="input-group-addon" id="sizing-addon2"><span class="glyphicon glyphicon-lock"></span></span>
+                <input id="password" class="form-control loginInput" type="password" placeholder="PASSWORD" name="password" required="required" aria-describedby="sizing-addon2"/><br/>
+              </div>
+
+              <input id="loginbutton" class="btn btn-lg btn-default btn-block" type="button" value="ADMIN LOGIN"/>
+
+            </fieldset>
+          </form>
+
+          <div id="messages">
+            <span id="talMessages" tal:condition="php: count(messages) GT 0">
+              <span tal:repeat="msg messages" class="${msg/type}"><span tal:content="msg/text"></span></span>
+            </span>
+            <span id="AJAXMessages">
+            </span>
+          </div>      
+
+          <h3> -- OR -- </h3>
+          <h3>CONTINUE AS A CUSTOMER</h3>
+
+
+
+      </div>
+
+<!-- tal:condition="exists: isLoggedIn" / only shows up if admin is logged in-->
+
+      <div id="logoutFormContainer" class="container" tal:condition="php: Session::get('isLoggedIn')">
+
+        <form id="logoutForm" class="form-signin">
+          <fieldset>
+            <h2>LOGOUT</h2>
+            
+            <input id="logoutbutton" class="btn btn-lg btn-default btn-block" type="button" value="Logout"/>
+            <input type="hidden" value="LOGOUT" name="logoutButton"/>
+          </fieldset>
+        </form>
+
+      </div>
+
+
+    </div>
 
 
     <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js" integrity="sha384-0mSbJDEHialfmuBBQP6A4Qrprq5OVfW37PRR3j5ELqxss1yVqOtnepnHVP9aJ7xS" crossorigin="anonymous"></script>
     <script src="./js/main.js"></script>
 
     <footerReplace metal:use-macro="/templating/footer.xhtml/page_footer">

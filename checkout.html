@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<title>TAVOLA ITALIANA - Checkout</title>
+	</head>
+
+	<body>
+		<div metal:define-macro="checkout" role="checkout" id="checkout" class="center">
+
+			<form id="checkoutForm">
+			    <input id="firstname" type="text" name="firstname" value="firstname" placeholder="FIRST NAME" required autofocus pattern="[a-z,A-Z]{4,50}" /><br/>
+
+			    <input id="lastname" type="text" name="lastname" value="lastname" placeholder="LAST NAME" required autofocus pattern="[a-z,A-Z]{4,50}" /><br/>
+
+			    <input id="email" type="email" name="email" value="email" placeholder="EMAIL" required autofocus pattern="[a-z,A-Z]{4,50}"/><br/>
+
+			    <input id="phone" type="text" name="phone" value="firstname" placeholder="PHONE" required autofocus pattern="[0-9]{10}"/><br/>
+
+			    <input id="address" type="text" name="address" value="address" placeholder="ADDRESS" required autofocus pattern="[a-z,A-Z,0-9]{4,50}"/><br/>
+
+			    <input type="button" value="ADMIN LOGIN" class="buttons" id="login_button"/>
+			</form>
+		</div>
+	</body>
+</html>

@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>TAVOLA ITALIANA - Admin Login</title>
+</head>
+
+<body>
+  <div id="login" class="center">
+    <img id="logo" src="./images/logo.png" alt="Italiana Tavola"/>
+    <form id="loginForm">
+        <input id="username" type="text" name="usrname" placeholder="USERNAME" required autofocus pattern="[a-z,A-Z]{4,50}" oninput="checkUsername(this);"/><br/>
+        <input id="pass" type="password" name="pwd" placeholder="PASSWORD" required pattern="[a-z,A-Z, 0-9]{4,50}" oninput="checkUsername(this);"/>
+        <div id="errorMsg">
+            <span class="errorSpan" id="userError"></span>
+            <span class="errorSpan" id="passError"></span>
+        </div> 
+        <input type="button" value="ADMIN LOGIN" class="buttons" id="login_button"/>
+    </form>
+</div>
+</body>
+</html>
