@@ -10,7 +10,7 @@
 
 
 
-    <navReplace metal:use-macro="./templating/nav.xhtml/nav_bar">
+    <navReplace tal:condition="php: Session::get('isLoggedIn')" metal:use-macro="./templating/nav.xhtml/nav_bar">
     </navReplace>
 
 
@@ -18,7 +18,7 @@
 
 
 
-      <div id="profileContainer">
+      <div id="profileContainer" tal:condition="php: Session::get('isLoggedIn')">
         <div id="userProfile" tal:condition="exists:profile">
           <h2>User Profile</h2>
           <span tal:content="profile/username"></span>
@@ -107,7 +107,7 @@
           </div>      
 
           <h3> -- OR -- </h3>
-          <h3>CONTINUE AS A CUSTOMER</h3>
+          <h3 id="as_cust">CONTINUE AS A CUSTOMER</h3>
 
 
 
