@@ -101,6 +101,7 @@ loadScripts();
 
     // here's where we can choose how to render: AJAX or non-AJAX
     // this might affect how we output the data (i.e., JSON vs HTML)
+    $profile = $this->userManager->getUserProfile(Session::get('user_name'));
     if(Utils::isAJAX()) {
         $data = array();
         // AJAX means that we'll send it as JSON - at least for this call
@@ -117,7 +118,7 @@ loadScripts();
         // render the whole page using PHPTAL
 
         // finally, create a new template object
-        $template = new PHPTAL('./index.xhtml');
+        $template = new PHPTAL('../index.xhtml');
 
         // now add the variables for processing and that you created from above:
        $template->page_title = "Tavola Italiana";

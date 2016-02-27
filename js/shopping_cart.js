@@ -143,7 +143,7 @@
                 $.ajax({
                     url: "./mod/shoppingcart.php",
                     type: "POST",
-                    dataType: 'JSON',
+                    dataType: 'json',
                     data: {action: "startcart"},
                     success: function(returnedData) {
                         console.log("cart start response: ", returnedData);
