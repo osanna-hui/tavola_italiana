@@ -14,7 +14,9 @@ loadScripts();
             $sku = $row['SKU'];
             $price = $row['item_price'];
             $desc = $row['description'];
+            $img = $row['item_img'];
             $html .= "<tr>
+                        <td data-sku-img='$img'>$img</td>
                         <td data-sku-desc='$sku'>$desc</td>
                         <td><input data-sku-qty='$sku' type='number' value='1' min='1' max='20' step='1'/></td>
                         <td data-sku-price='$sku'>$price</td>

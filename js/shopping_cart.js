@@ -53,6 +53,7 @@
                     var date = item['date'];
                     var price = item['price'];
                     var desc = item['desc'];
+                    var img = item['img'];
                     var subtotal = parseFloat(Math.round((qty * price) * 100) / 100).toFixed(2);
 
                     var item = "<li data-item-sku='" + sku + "' data-item-qty='" + qty + "' data-item-date='"
