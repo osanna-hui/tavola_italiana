@@ -116,6 +116,7 @@ $(document).ready(function() {
         document.getElementById('back').style.display = "inline-block";
         document.getElementById('shoppingCartContainer').style.display = "none";
         document.getElementById('profile').style.display = "none";
+        document.getElementById('cart').style.display = "none";
     }
     document.getElementById("back").onclick = function(){
         document.getElementById('userProfile').style.display = "none";
@@ -123,9 +124,10 @@ $(document).ready(function() {
         document.getElementById('back').style.display = "none";
         document.getElementById('shoppingCartContainer').style.display = "block";
         document.getElementById('profile').style.display = "inline-block";
+        document.getElementById('cart').style.display = "inline-block";
     }
 
-/////////////////////////// SHOW PROFILE //////////////////////////
+/////////////////////////// SHOW SHOPPING CART //////////////////////////
 
     document.getElementById("cart").onclick = function(){
         document.getElementById('cartSummary').style.display = "block";
@@ -140,5 +142,19 @@ $(document).ready(function() {
         document.getElementById('profile').style.display = "inline-block";
     }
 
+
+/////////////////////////// PROCEED TO CHECKOUT//////////////////////////
+    document.getElementById("toCheckout").onclick = function(){
+        document.getElementById('cartSummary').style.display = "none";
+        document.getElementById('customerCheckout').style.display = "block";
+        document.getElementById('backToMenu').style.display = "none";
+        document.getElementById('backToCart').style.display = "inline-block";
+    }
+    document.getElementById("backToCart").onclick = function(){
+        document.getElementById('cartSummary').style.display = "block";
+        document.getElementById('customerCheckout').style.display = "none";
+        document.getElementById('backToCart').style.display = "none";
+        document.getElementById('backToMenu').style.display = "inline-block";
+    }
 
 });

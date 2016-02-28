@@ -97,7 +97,7 @@ html, body {
   background-color:rgb(143, 28, 30);
   color:#fff;
 }
-#productTable thead tr th{
+#product_header{
   text-align: center;
   font-size:22px;
   padding:10px;
@@ -110,6 +110,9 @@ html, body {
 #productTable tbody tr {
   box-shadow: 2px 2px 5px #999;
   line-height:2;
+}
+.product_img{
+  width:100%;
 }
 
 #startCart {
@@ -127,6 +130,11 @@ html, body {
   width: 30%;
   height: 20%;
   border-radius: 5px;
+}
+#checkoutcart{
+  width:50%;
+  margin:auto;
+  margin-bottom:5vh;
 }
 #cancelCart{
   color:#666;
@@ -146,6 +154,15 @@ html, body {
 #cartSummary{
   display:none;
 }
+
+#customerCheckout{
+  display:none;
+  color:#fff;
+  width:55%;
+  margin:auto;
+  text-align: center;
+}
+
 
 #navItems li, ol, ul{
   display: inline-block;
@@ -223,10 +240,10 @@ html, body {
   width:40px;
   height:auto;
 }
-#userProfile, #logoutForm, #back, #backToMenu{
+#userProfile, #logoutForm, #back, #backToMenu, #backToCart{
   display:none;
 }
-#profile, #back, #backToMenu{
+#profile, #back, #backToMenu, #backToCart{
   float:left;
 }
 #cart{
@@ -236,7 +253,6 @@ html, body {
 .nav_icons:hover{
   cursor:pointer;
 }
-
 
 h1, h3, h4{
     display:block;

@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 
-  <!-- View -->
+<!-- View -->
   <headReplace metal:use-macro="/templating/head.xhtml/meta_head">
   </headReplace>
 
@@ -16,7 +16,7 @@
      <div id="loginDiv">
 
 
-
+<!--          ADMIN PROFILE          -->
       <div id="profileContainer" tal:condition="php: Session::get('isLoggedIn')">
         <div id="userProfile" tal:condition="exists:profile">
           <h2>WELCOME BACK!</h2>
@@ -27,15 +27,13 @@
         </div>
       </div>
 
+<!--        CUSTOMER MENU         -->
       <div id="shoppingCartContainer" tal:condition="php: Session::get('isLoggedIn')">
 
         <table id="productTable">
             <thead>
               <tr>
-                <th>Product</th>
-                <th>Quantity</th>
-                <th>Price</th>
-                <th>Add</th>
+                <th id="product_header">MENU</th>
               </tr>
             </thead>
                 <tbody id="productslist">
@@ -44,7 +42,8 @@
            
         </table>
         <input type="button" value="START CART" class="btn btn-lg btn-default btn-block" id="startCart"/>
-        
+
+<!--          CUSTOMER SHOPPING CART SUMMARY          -->
         <div id="cartSummary">
           <h2>Cart Summary</h2>
           <ul id="shoppingCart">
@@ -57,10 +56,36 @@
           <input type="button" value="PROCEED TO CHECKOUT" class="btn btn-lg btn-default" id="toCheckout"/>
           <div style="font-size: 8pt;"><i>You'll see taxes and other shipping costs (ha ha) during checkout.</i></div>
 
-          <input type="button" value="CHECKOUT" class="btn btn-lg btn-default" id="checkoutcart"/>
+          
         </div>
       </div>
 
+<!--          CUSTOMER CHECKOUT          -->
+
+      <div id="customerCheckout">
+        <h2>Delivery Information:</h2>
+        <form id="customerCheckoutForm" class="form-checkout">
+          <fieldset>
+          
+            <input id="custFirstName" class="form-control loginInput" type="text" placeholder="FIRSTNAME" name="custFirstName" autofocus="autofocus" required="required"/>
+
+            <input id="custLastName" class="form-control loginInput" type="text" placeholder="LASTNAME" name="custLastName" required="required"/>
+
+            <input id="custPhone" class="form-control loginInput" type="text" placeholder="PHONE NUMBER" name="custPhone" required="required"/>
+
+            <input id="custEmail" class="form-control loginInput" type="email" placeholder="EMAIL" name="custEmail" required="required"/>
+          
+            <input id="custAddress" class="form-control loginInput" type="text" placeholder="DELIVERY ADDRESS" name="custAddress" required="required"/>
+            
+            <input id="custCity" class="form-control loginInput" type="text" placeholder="DELIVERY CITY" name="custCity" required="required"/><br/>
+
+            <input type="button" value="CHECKOUT" class="btn btn-lg btn-default" id="checkoutcart"/>
+
+          </fieldset>
+        </form>
+      </div>
+
+<!--          ADMIN LOGIN          -->
       <div id="loginFormContainer" class="container" tal:condition="php: !Session::get('isLoggedIn')">
         <img id="TI_logo" src="./img/TI_LOGO.png"/>
           <form id="loginForm" class="form-signin">
@@ -90,27 +115,18 @@
 
           <h3> -- OR -- </h3>
           <h3 id="as_cust">CONTINUE AS A CUSTOMER</h3>
-
-
-
       </div>
 
-<!-- tal:condition="exists: isLoggedIn" / only shows up if admin is logged in-->
-
+<!--          ADMIN LOGOUT          -->
       <div id="logoutFormContainer" class="container" tal:condition="php: Session::get('isLoggedIn')">
 
         <form id="logoutForm" class="form-signin">
           <fieldset>
-            <h2>LOGOUT</h2>
-            
             <input id="logoutbutton" class="btn btn-lg btn-default btn-block" type="button" value="Logout"/>
             <input type="hidden" value="LOGOUT" name="logoutButton"/>
           </fieldset>
         </form>
-
       </div>
-
-
     </div>
 
 
