@@ -19,7 +19,7 @@
 
       <div id="profileContainer" tal:condition="php: Session::get('isLoggedIn')">
         <div id="userProfile" tal:condition="exists:profile">
-          <h2>User Profile</h2>
+          <h2>WELCOME BACK!</h2>
           <span tal:content="profile/username"></span>
           <span tal:content="profile/firstName"></span>
           <span tal:content="profile/lastName"></span>
@@ -39,43 +39,26 @@
               </tr>
             </thead>
                 <tbody id="productslist">
-            <!-- THIS SECTION WILL BE REPLACED BY SERVER GENERATED ROWS -->
-
-
-            <!-- THIS SECTION WILL BE REPLACED BY SERVER GENERATED ROWS -->
-                </tbody>
             
-          <!--<tr>
-            <td>Toaster</td>
-            <td><input data-sku-qty="sk-2843y" type="number" value="1" min="1" max="10" step="1"/></td>
-            <td>14.99</td>
-            <td><input data-sku-add="sk-2843y" type="button" value="Add"/></td>
-          </tr>
-          <tr>
-            <td>Napkins (200 pack)</td>
-            <td><input data-sku-qty="sk-327623z" type="number" value="1" min="1" max="10" step="1"/></td>
-            <td>3.99</td>
-            <td><input data-sku-add="sk-327623z" type="button" value="Add"/></td>
-          </tr>
-          <tr>
-            <td>Coffee Cup</td>
-            <td><input data-sku-qty="sk-438s3x" type="number" value="1" min="1" max="10" step="1"/></td>
-            <td>1.99</td>
-            <td><input data-sku-add="sk-438s3x" type="button" value="Add"/></td>
-          </tr>-->
-
+                </tbody>
+           
         </table>
-        <input type="button" value="Start Cart" id="startCart"/>
-        <input type="button" value="Cancel Cart" id="cancelCart"/>
-        <h2>Cart Summary</h2>
-        <ul id="shoppingCart">
-          <!--<li data-item-qty="1" data-item-sku="sk-438s3x">Coffee Cup (1) &#160;
-            <input type="button" data-remove-button="remove" value="X"/></li>-->
-        </ul>
-        <p id="cartTotal">Total: </p>
-        <input type="button" value="Checkout" id="checkoutcart"/>
-        <span style="display: inline; font-size: 8pt;"><i>You'll see taxes and other shipping costs (ha ha) during checkout.</i></span>
+        <input type="button" value="START CART" class="btn btn-lg btn-default btn-block" id="startCart"/>
+        
+        <div id="cartSummary">
+          <h2>Cart Summary</h2>
+          <ul id="shoppingCart">
+            <p>You currently don't have anything in your shopping cart!</p>
+            <!--<li data-item-qty="1" data-item-sku="sk-438s3x">Coffee Cup (1) &#160;
+              <input type="button" data-remove-button="remove" value="X"/></li>-->
+          </ul>
+          <p id="cartTotal">Total: </p>
+          <input type="button" value="CANCEL CART" class="btn btn-lg btn-default" id="cancelCart"/>
+          <input type="button" value="PROCEED TO CHECKOUT" class="btn btn-lg btn-default" id="toCheckout"/>
+          <div style="font-size: 8pt;"><i>You'll see taxes and other shipping costs (ha ha) during checkout.</i></div>
 
+          <input type="button" value="CHECKOUT" class="btn btn-lg btn-default" id="checkoutcart"/>
+        </div>
       </div>
 
       <div id="loginFormContainer" class="container" tal:condition="php: !Session::get('isLoggedIn')">

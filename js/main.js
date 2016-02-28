@@ -125,6 +125,20 @@ $(document).ready(function() {
         document.getElementById('profile').style.display = "inline-block";
     }
 
+/////////////////////////// SHOW PROFILE //////////////////////////
+
+    document.getElementById("cart").onclick = function(){
+        document.getElementById('cartSummary').style.display = "block";
+        document.getElementById('backToMenu').style.display = "inline-block";
+        document.getElementById('productTable').style.display = "none";
+        document.getElementById('profile').style.display = "none";
+    }
+    document.getElementById("backToMenu").onclick = function(){
+        document.getElementById('cartSummary').style.display = "none";
+        document.getElementById('backToMenu').style.display = "none";
+        document.getElementById('productTable').style.display = "block";
+        document.getElementById('profile').style.display = "inline-block";
+    }
 
 
 });

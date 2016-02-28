@@ -16,7 +16,7 @@ loadScripts();
             $desc = $row['description'];
             $html .= "<tr>
                         <td data-sku-desc='$sku'>$desc</td>
-                        <td><input data-sku-qty='$sku' type='number' value='1' min='1' max='10' step='1'/></td>
+                        <td><input data-sku-qty='$sku' type='number' value='1' min='1' max='20' step='1'/></td>
                         <td data-sku-price='$sku'>$price</td>
                         <td><input data-sku-add='$sku' type='button' value='Add'/></td>
                       </tr>";
