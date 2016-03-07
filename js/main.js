@@ -1,7 +1,6 @@
 
 $(document).ready(function() {
 
-
     // from: http://www.developerdrive.com/2013/04/turning-a-form-element-into-json-and-submiting-it-via-jquery/
     function ConvertFormToJSON(form){
         var array = $(form).serializeArray();
@@ -47,6 +46,7 @@ $(document).ready(function() {
                     // you're in, show profile
                     console.log(returnedData['user']['username']);
                     location.reload();
+                    
 
                     // THIS SECTION HAS TO BE THE SAME AS index.html, LINE 21
                     /*
@@ -108,6 +108,18 @@ $(document).ready(function() {
 
 
 
+/////////////////////////// HOME PAGE //////////////////////////
+
+/*document.getElementById("loginForm").style.display = "none";
+document.getElementById("messages").style.display = "none";
+document.getElementById("as_admin").onclick = function(){
+    document.getElementById("loginForm").style.display = "block";
+    document.getElementById("messages").style.display = "block";
+    document.getElementById("as_admin").style.display = "none";
+}
+*/
+
+
 /////////////////////////// SHOW PROFILE //////////////////////////
 
     document.getElementById("profile").onclick = function(){
@@ -134,12 +146,14 @@ $(document).ready(function() {
         document.getElementById('backToMenu').style.display = "inline-block";
         document.getElementById('productTable').style.display = "none";
         document.getElementById('profile').style.display = "none";
+        document.getElementById('cart').style.display = "none";
     }
     document.getElementById("backToMenu").onclick = function(){
         document.getElementById('cartSummary').style.display = "none";
         document.getElementById('backToMenu').style.display = "none";
         document.getElementById('productTable').style.display = "block";
         document.getElementById('profile').style.display = "inline-block";
+        document.getElementById('cart').style.display = "inline-block";
     }
 
 

@@ -218,7 +218,10 @@ html, body {
   margin-top:15vh;
   height:82vh;
 }
-#as_cust:hover{
+#as_admin{
+  margin-top: 7vh;
+}
+#as_cust:hover, #as_admin:hover{
   cursor:pointer;
   text-shadow: 3px 3px 3px #666;
 }
@@ -254,7 +257,7 @@ html, body {
   cursor:pointer;
 }
 
-h1, h3, h4{
+h1, h2, h3, h4{
     display:block;
     margin-left: auto;
     margin-right: auto;
