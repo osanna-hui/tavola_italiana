@@ -48,6 +48,20 @@ class ShoppingCartManager {
         }
 
     }
+    
+    public function updateCart($items, $cart_id) {
+        foreach($items as $item) {
+            $sku = $item['sku'];
+            $qty = $item['qty'];
+            
+            $sql = "SELECT ID FROM product WHERE SKU = '$sku'";
+            $rows = $this->db->query($sql);
+            $product_id = $rows[0]['ID'];
+            $sql = "UPDATE cart_product SET (product_id, cart_id, quantity)
+                WHERE ($product_id, $cart_id, $qty)";
+            $this->db->affectRows($sql);
+        }
+    }
 
 }
 
