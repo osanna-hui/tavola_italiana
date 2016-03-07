@@ -36,7 +36,23 @@ class UserManager {
 
         return null;
     }
+    
+    public function createCustomer($usr = ""){
+      $params = array(":cust" => $usr);
+      
+      $sql = "INSERT INTO customers (firstName, lastName, phone, email, deliveryAddress, city, transaction_id) VALUES (:cust, 'none', '123', 'email', '123 test', 'vancouver', '1' )";
+      $rows = $this->db->query($sql, $params);
+      
+      $sql = "SELECT * FROM customers WHERE firstName = :cust";
+      
+        $rows = $this->db->query($sql, $params);
+        if(count($rows) > 0) {
+            return $rows[0];
+        }
 
+        return null;
+      
+    }
 
 }
 

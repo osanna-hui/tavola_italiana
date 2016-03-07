@@ -14,6 +14,8 @@ $scripts = array('DBConnector.php',
                  'ShowUserProfileAction.php',
                  'UserLoginAction.php',
                  'UserLogoutAction.php',
+                 
+                 'customerInAction.php',
                  'UserManager.php',
                  'Utils.php');
 

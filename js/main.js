@@ -13,7 +13,25 @@ $(document).ready(function() {
         return json;
     }
 
-    
+    function customerIn(){
+      $.ajax({
+        url:"./mod/customerIn.php",
+        type:"POST",
+        dataType:"JSON",
+        data:{
+          user_name:"newUser"
+        },
+        success:function(returnedData){
+          
+          location.reload();
+          console.log(returnedData);
+        },
+          error: function(jqXHR, textStatus, errorThrown) {
+              console.log("AJAX Error", textStatus);
+          }
+      });
+    }  
+  
     function doLogin() {
 
         var formData = ConvertFormToJSON("#loginForm");
@@ -46,7 +64,7 @@ $(document).ready(function() {
                     // you're in, show profile
                     console.log(returnedData['user']['username']);
                     location.reload();
-                    
+                    console.log(returnedData);
 
                     // THIS SECTION HAS TO BE THE SAME AS index.html, LINE 21
                     /*
@@ -100,6 +118,9 @@ $(document).ready(function() {
     
 
 
+    // create customer event
+    $("#startCart").click(customerIn);
+  
     // login event
     $("#loginbutton").click(doLogin);
 
