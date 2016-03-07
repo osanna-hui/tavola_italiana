@@ -163,6 +163,7 @@ document.getElementById("as_admin").onclick = function(){
 /////////////////////////// SHOW SHOPPING CART //////////////////////////
 
     document.getElementById("cart").onclick = function(){
+      console.log("cart");
         document.getElementById('cartSummary').style.display = "block";
         document.getElementById('backToMenu').style.display = "inline-block";
         document.getElementById('productTable').style.display = "none";

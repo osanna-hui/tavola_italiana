@@ -37,7 +37,8 @@ class CustomerInAction {
                     // log user in
                     //Session::set("user_name", $usr['username']);
                     Session::set("id", $usr['cust_id']);
-                    Session::set("isLoggedIn", true);
+                    //Session::set("isLoggedIn", true);
+                    Session::set("isCustomer", true);
                     return $usr;
 
                 } else {

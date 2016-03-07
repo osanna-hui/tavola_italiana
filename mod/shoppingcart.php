@@ -62,6 +62,29 @@ loadScripts();
                 }
 
                 break;
+            case "updatecart":
+                // start the cart, so start session, create cart table in DB
+                if(isset($_SESSION['started'])) {
+                    $data = array("status" => "fail", "msg" => "You have no cart to update.");
+                    echo json_encode($data, JSON_FORCE_OBJECT);
+                    return;
+                }
+
+                $id = $scm->updateCart();
+                if(!empty($id)) {
+
+                    $_SESSION['started'] = "true";
+                    $_SESSION['id'] = $id;
+                    //$data = array("status" => "success", "s_id", => session_id(),
+                    //    "cart_id" => $id, "msg" => "Cart started.");
+                    $data = array("status" => "success", "cart_id" => $id, "msg" => "Cart started.");
+
+
+                } else {
+                    $data = array("status" => "fail", "msg" => "Cart NOT started.");
+                }
+
+                break;
             case "checkoutcart":
                 // check out the cart
 
