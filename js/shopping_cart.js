@@ -57,9 +57,16 @@
                     var subtotal = parseFloat(Math.round((qty * price) * 100) / 100).toFixed(2);
 
                     var item = "<li data-item-sku='" + sku + "' data-item-qty='" + qty + "' data-item-date='"
-                        + date + "'>" + desc + " " + qty + " x $" + price + " = " + subtotal
-                        + " <input type='button' data-remove-button='remove' value='X'/></li>";
+                        + date + "'>" + desc + " <input data-sku-qty='" + qty + "' type='number' value='" + qty + "' min='1' max='20' step='1' id='quantity'/><input type='button' id='updateCartBut' value='Update'/> " + " x $" + price + " = " + subtotal
+                        + " <input id='remove' type='button' data-remove-button='remove' value='X'/></li>";
                     shoppingCartList.append(item);
+                    /*var button = document.createElement('input');
+                    button.setAttribute("type", button);
+                    button.setAttribute("value", type);
+                    button.setAttribute("name", type);
+                    button.id = "updateQuantity";
+                    
+                    shoppingCartList.append(button);*/
 
 
                 }
@@ -84,8 +91,8 @@
                 // ALTERED FOR WEB STORAGE
                 var aDate = new Date();
                 var item = "<li data-item-sku='" + sku + "' data-item-qty='" + qty + "' data-item-date='"
-                    + aDate.getTime() + "'>" + desc + " " + qty + " x $" + price + " = " + subtotal
-                    + " <input type='button' data-remove-button='remove' value='X'/></li>";
+                    + aDate.getTime() + "'>" + desc + " <input data-sku-qty='" + qty + "' type='number' value='" + qty + "' min='1' max='20' step='1' id='quantity'/> " + " x $" + price + " = " + subtotal
+                    + " <input id='remove' type='button' data-remove-button='remove' value='X'/></li>";
                 shoppingCartList.append(item);
 
 
@@ -104,7 +111,7 @@
             });
 
             // remove items from the cart
-            $("#shoppingCart").on("click", "input", function() {
+            $("#shoppingCart").on("click", "#remove", function() {
                 // https://api.jquery.com/closest/
 
 
@@ -217,6 +224,22 @@
                     }
                 });
                 var shoppingCartList = $("#shoppingCart").html("");
+            });
+            
+            // update the cart
+            $("#updateCartBut").click(function(){
+                
+                // retrieve all of the items from the cart:
+                var items = $("#shoppingCart li");
+                var itemArray = [];
+                $.each(items, function(key, value) {
+
+                    var item = {sku: value.getAttribute("data-item-sku"),
+                        qty: value.getAttribute("data-item-qty")};
+                    itemArray.push(item);
+                });
+                var itemsAsJSON = JSON.stringify(itemArray);
+                console.log("itemsAsJSON", itemsAsJSON);
             });
 
 
