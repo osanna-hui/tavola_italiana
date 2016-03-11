@@ -32,6 +32,17 @@
 
             loadProducts();
 
+            function ConvertFormToJSON(form){
+                var array = $(form).serializeArray();
+                var json = {};
+
+                jQuery.each(array, function() {
+                    // don't send 'undefined'
+                    json[this.name] = this.value || '';
+                });
+                return json;
+            }
+
             // SESSION STORAGE GET ITEMS IF THEY ALREADY EXIST IN SESSION STORAGE
             function loadShoppingCartItems() {
 
@@ -210,6 +221,8 @@
 
 
                 console.log("Check out cart with the following items", itemArray);
+
+
                 $.ajax({
                     url: "./mod/shoppingcart.php",
                     type: "POST",
@@ -224,6 +237,28 @@
                     }
                 });
                 var shoppingCartList = $("#shoppingCart").html("");
+
+                // add customer info into db
+                var formData = ConvertFormToJSON("#customerCheckoutForm");
+                $.ajax({
+                    url:"./mod/customerCheckout.php",
+                    type:"POST",
+                    dataType:"JSON",
+                    data:{
+                        formData
+                    },
+                    success: function(returnedData) {
+                        console.log("Customer Info: ", returnedData);
+
+                    },
+                    error: function(jqXHR, textStatus, errorThrown) {
+                        console.log(jqXHR.statusText, textStatus);
+                    }
+                });
+
+
+
+
             });
             
             // update the cart

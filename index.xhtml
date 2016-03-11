@@ -121,7 +121,7 @@
       </div>
 
 <!--          ADMIN LOGIN          -->
-      <div id="loginFormContainer" class="container" tal:condition="php: !Session::get('isLoggedIn')">
+      <div id="loginFormContainer" class="container" tal:condition="php: !Session::get('isLoggedIn') AND !Session::get('isCustomer')">
         <img id="TI_logo" src="./img/TI_LOGO.png"/>
           
           <form id="loginForm" class="form-signin">

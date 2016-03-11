@@ -54,6 +54,16 @@ class UserManager {
       
     }
 
+    public function updateCustomer($first = ""){
+      $params = array(":firstname" => $custFirstName, ":lastname" => $custLastName, ":phone" => $custPhone, ":email"=> $custEmail, ":address" => $custAddress, ":city"=> $custCity, ":cust_id" => $custID);
+      
+      $sql = "UPDATE customers SET firstName = :firstname, lastName = :lastname, phone = :phone, email = :email, deliveryAddress = :address, city = :city WHERE cust_id = :cust_id";
+      $rows = $this->db->query($sql, $params);
+
+        return null;
+      
+    }
+
 }
 
 ?>

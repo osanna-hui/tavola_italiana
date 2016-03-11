@@ -21,7 +21,7 @@ class CustomerInAction {
 
     public function customerIn() {
 
-        if(Session::get('isLoggedIn')) {
+        if(Session::get('isCustomer')) {
             Messages::addMessage("info", "You are already in.");
             return;
         } else {

@@ -141,25 +141,6 @@ document.getElementById("as_admin").onclick = function(){
 */
 
 
-/////////////////////////// SHOW PROFILE //////////////////////////
-
-    document.getElementById("profile").onclick = function(){
-        document.getElementById('userProfile').style.display = "block";
-        document.getElementById('logoutForm').style.display = "block";
-        document.getElementById('back').style.display = "inline-block";
-        document.getElementById('shoppingCartContainer').style.display = "none";
-        document.getElementById('profile').style.display = "none";
-        document.getElementById('cart').style.display = "none";
-    }
-    document.getElementById("back").onclick = function(){
-        document.getElementById('userProfile').style.display = "none";
-        document.getElementById('logoutForm').style.display = "none";
-        document.getElementById('back').style.display = "none";
-        document.getElementById('shoppingCartContainer').style.display = "block";
-        document.getElementById('profile').style.display = "inline-block";
-        document.getElementById('cart').style.display = "inline-block";
-    }
-
 /////////////////////////// SHOW SHOPPING CART //////////////////////////
 
     document.getElementById("cart").onclick = function(){
@@ -192,5 +173,27 @@ document.getElementById("as_admin").onclick = function(){
         document.getElementById('backToCart').style.display = "none";
         document.getElementById('backToMenu').style.display = "inline-block";
     }
+
+
+    
+/////////////////////////// SHOW PROFILE //////////////////////////
+
+    document.getElementById("profile").onclick = function(){
+        document.getElementById('userProfile').style.display = "block";
+        document.getElementById('logoutForm').style.display = "block";
+        document.getElementById('back').style.display = "inline-block";
+        document.getElementById('shoppingCartContainer').style.display = "none";
+        document.getElementById('profile').style.display = "none";
+        document.getElementById('cart').style.display = "none";
+    }
+    document.getElementById("back").onclick = function(){
+        document.getElementById('userProfile').style.display = "none";
+        document.getElementById('logoutForm').style.display = "none";
+        document.getElementById('back').style.display = "none";
+        document.getElementById('shoppingCartContainer').style.display = "block";
+        document.getElementById('profile').style.display = "inline-block";
+        document.getElementById('cart').style.display = "inline-block";
+    }
+
 
 });
