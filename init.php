@@ -17,7 +17,9 @@ $scripts = array('DBConnector.php',
                  
                  'customerInAction.php',
                  'UserManager.php',
-                 'Utils.php');
+                 'Utils.php'
+                 'customerCheckout.php'
+                 'customerCheckoutAction.php');
 
     $subDir = "mod";
 

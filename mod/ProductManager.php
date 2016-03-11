@@ -31,6 +31,10 @@ class ProductManager {
         return null;
     }
 
+    public function updateProductQnty() {
+        $sql = "UPDATE product SET item_qnty =  WHERE ID = ".$_POST['ID']."";
+        $rows = $this->db->query($sql);
+    }
 
 }
 
