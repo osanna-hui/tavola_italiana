@@ -37,22 +37,20 @@ class UserManager {
         return null;
     }
     
-    public function createCustomer($usr = ""){
-      $params = array(":cust" => $usr);
+    public function createCustomer($first = "", $last = "", $phone = "", $email = "", $address = "", $city = "", $cartID =""){
+      $params = array(":first" => $first, ":last" => $last, ":phone" => $phone, ":email" => $email, ":address" => $address, ":city" => $city, ":cartID" => $cartID);
       
-      $sql = "INSERT INTO customers (firstName, lastName, phone, email, deliveryAddress, city, transaction_id) VALUES (:cust, 'none', '123', 'email', '123 test', 'vancouver', '1' )";
+      $sql = "INSERT INTO customers (firstName, lastName, phone, email, deliveryAddress, city,  transaction_id) VALUES (:first, :last, :phone, :email, :address, :city, :cartID)";
       $rows = $this->db->query($sql, $params);
       
-      $sql = "SELECT * FROM customers WHERE firstName = :cust";
+      //$sql = "SELECT * FROM customers WHERE firstName = :first";
       
-        $rows = $this->db->query($sql, $params);
-        if(count($rows) > 0) {
-            return $rows[0];
-        }
-
-        return null;
+       // $rows = $this->db->query($sql, $params);
+        
+        return $rows;
       
     }
+   
 
 }
 

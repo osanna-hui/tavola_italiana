@@ -5,17 +5,37 @@
 </head>
 
 <body>
-  <div id="login" class="center">
-    <img id="logo" src="./images/logo.png" alt="Italiana Tavola"/>
-    <form id="loginForm">
-        <input id="username" type="text" name="usrname" placeholder="USERNAME" required autofocus pattern="[a-z,A-Z]{4,50}" oninput="checkUsername(this);"/><br/>
-        <input id="pass" type="password" name="pwd" placeholder="PASSWORD" required pattern="[a-z,A-Z, 0-9]{4,50}" oninput="checkUsername(this);"/>
-        <div id="errorMsg">
-            <span class="errorSpan" id="userError"></span>
-            <span class="errorSpan" id="passError"></span>
-        </div> 
-        <input type="button" value="ADMIN LOGIN" class="buttons" id="login_button"/>
-    </form>
-</div>
+  <div id="loginFormContainer" class="container" tal:condition="php: !Session::get('isLoggedIn')">
+    <img id="TI_logo" src="./img/TI_LOGO.png"/>
+      
+      <form id="loginForm" class="form-signin">
+        <fieldset>
+          <h2 id="startCart" class="as_cust">CONTINUE AS CUSTOMER</h2>
+          <h3> -- OR -- </h3>
+          <h3 id="adminLoginTitle">LOGIN TO CONTINUE AS A REGISTERED ADMIN</h3>
+          <div class="input-group">
+            <span class="input-group-addon" id="sizing-addon1"><span class="glyphicon glyphicon-user"></span></span>
+            <input id="user_name" class="form-control loginInput" type="text" placeholder="USERNAME" name="user_name" autofocus="autofocus" required="required" aria-describedby="sizing-addon1"/><br/>
+          </div>
+          <div class="input-group">
+            <span class="input-group-addon" id="sizing-addon2"><span class="glyphicon glyphicon-lock"></span></span>
+            <input id="password" class="form-control loginInput" type="password" placeholder="PASSWORD" name="password" required="required" aria-describedby="sizing-addon2"/><br/>
+          </div>
+
+          <input id="loginbutton" class="btn btn-lg btn-default btn-block" type="button" value="ADMIN LOGIN"/>
+
+        </fieldset>
+      </form>
+
+      <div id="messages">
+        <span id="talMessages" tal:condition="php: count(messages) GT 0">
+          <span tal:repeat="msg messages" class="${msg/type}"><span tal:content="msg/text"></span></span>
+        </span>
+        <span id="AJAXMessages">
+        </span>
+      </div>      
+
+      
+  </div>
 </body>
 </html>

@@ -7,6 +7,7 @@ $scripts = array('DBConnector.php',
                  'Messages.php',
                  'Parameters.php',
                  'ProductManager.php',
+                 'updateProductsAction.php',
                  //'products.php',
                  //'shoppingcart.php',
                  'ShoppingCartManager.php',
@@ -14,14 +15,12 @@ $scripts = array('DBConnector.php',
                  'ShowUserProfileAction.php',
                  'UserLoginAction.php',
                  'UserLogoutAction.php',
-                 
-                 'customerInAction.php',
+                 //'customerInAction.php',
+                 'customerCheckoutAction.php',
                  'UserManager.php',
-                 'Utils.php'
-                 'customerCheckout.php'
-                 'customerCheckoutAction.php');
+                 'Utils.php');
 
-    $subDir = "mod";
+    $subDir = "src";
 
     foreach($scripts as $script) {
         require_once($subDir . DIRECTORY_SEPARATOR. $script);

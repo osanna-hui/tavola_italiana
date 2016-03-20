@@ -1,29 +1,40 @@
 <!-- View Fragment -->
 <nav id="nav" role="navigation" metal:define-macro="nav_bar">
 
-
-  <!-- Brand and toggle get grouped for better mobile display -->
   <div>
     <img id="profile" class="nav_icons" src="./img/profile.png"/>
     <img id="back" class="nav_icons" src="./img/back.png"/>
     <img id="backToMenu" class="nav_icons" src="./img/back.png"/>
-    <img id="backToCart" class="nav_icons" src="./img/back.png"/>
+    <!--<img id="backToCart" class="nav_icons" src="./img/back.png"/>-->
     <img id="nav_logo" src="./img/TI_Small.png"/>
-    <img id="cart" class="nav_icons" src="./img/cart.png"/>
-    
-
-    <!-- Collect the nav links, forms, and other content for toggling -->
-    <div id='navDiv' >
-      <ul id="navItems">
-        <li><a href="index.php">APPETIZERS</a></li>
-        <li><a href="index.php">PASTAS</a></li>
-        <li><a href="index.php">PIZZAS</a></li>
-        <li><a href="index.php">DESSERTS</a></li>
-      </ul>
-
-    </div>
-
+    <!--<img id="cart" class="nav_icons" src="./img/cart.png"/>-->
+    <a href="#">Alert!<span class="badge">5</span></a>
+    <button class="btn btn-primary" type="button">
+  Alert! <span class="badge">4</span>
+</button>
   </div>
+  <script>
+
+
+/////////////////////////// SHOW PROFILE //////////////////////////
+
+    document.getElementById("profile").onclick = function(){
+        document.getElementById('userProfile').style.display = "block";
+        document.getElementById('logoutForm').style.display = "block";
+        document.getElementById('back').style.display = "inline-block";
+        document.getElementById('productEditorTable').style.display = "none";
+        document.getElementById('profile').style.display = "none";
+        //document.getElementById('cart').style.display = "none";
+    }
+    document.getElementById("back").onclick = function(){
+        document.getElementById('userProfile').style.display = "none";
+        document.getElementById('logoutForm').style.display = "none";
+        document.getElementById('back').style.display = "none";
+        document.getElementById('productEditorTable').style.display = "block";
+        document.getElementById('profile').style.display = "inline-block";
+        //document.getElementById('cart').style.display = "inline-block";
+    }
+</script>
 
 
 </nav>

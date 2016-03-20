@@ -30,10 +30,11 @@ loadScripts();
                 if(!empty($id)) {
 
                     $_SESSION['started'] = "true";
-                    $_SESSION['id'] = $id;
-                    //$data = array("status" => "success", "s_id", => session_id(),
-                    //    "cart_id" => $id, "msg" => "Cart started.");
-                    $data = array("status" => "success", "cart_id" => $id, "msg" => "Cart started.");
+                    $_SESSION['cart_id'] = $id;
+                    $_SESSION['isCustomer'] = "true";
+                    //Session::set("isCustomer", true);
+                    
+                    $data = array("status" => "success", "cart_id" => $id, "msg" => "Cart started.", "session" => $_SESSION['isCustomer']);
 
 
                 } else {
@@ -49,7 +50,7 @@ loadScripts();
                     echo json_encode($data, JSON_FORCE_OBJECT);
                     return;
                 }
-                $affectedRows = $scm->cancelCart($_SESSION['id']);
+                $affectedRows = $scm->cancelCart($_SESSION['cart_id']);
 
                 if($affectedRows > 0) {
 
@@ -74,7 +75,7 @@ loadScripts();
                 if(!empty($id)) {
 
                     $_SESSION['started'] = "true";
-                    $_SESSION['id'] = $id;
+                    $_SESSION['cart_id'] = $id;
                     //$data = array("status" => "success", "s_id", => session_id(),
                     //    "cart_id" => $id, "msg" => "Cart started.");
                     $data = array("status" => "success", "cart_id" => $id, "msg" => "Cart started.");
@@ -96,9 +97,10 @@ loadScripts();
 
                 // turn the JSON into an array of arrays (true means arrays and not objects)
                 $items = json_decode($_POST['items'], true);
-                $scm->addItemsToCart($items, $_SESSION['id']);
+                $scm->addItemsToCart($items, $_SESSION['cart_id']);
 
-                $affectedRows = $scm->checkoutCart($_SESSION['id']);
+                $affectedRows = $scm->checkoutCart($_SESSION['cart_id']);
+
 
                 if($affectedRows > 0) {
 
@@ -122,6 +124,7 @@ loadScripts();
 
     echo json_encode($data, JSON_FORCE_OBJECT);
 
+/*
     // here's where we can choose how to render: AJAX or non-AJAX
     // this might affect how we output the data (i.e., JSON vs HTML)
     $profile = $this->userManager->getUserProfile(Session::get('user_name'));
@@ -159,6 +162,6 @@ loadScripts();
             echo $e;
         }
 
-    }
+    }*/
 
 ?>

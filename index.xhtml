@@ -7,62 +7,74 @@
 
   <body>
 
-
-
     <navReplace tal:condition="php: Session::get('isLoggedIn')" metal:use-macro="./templating/nav.xhtml/nav_bar">
     </navReplace>
 
+    <navReplace tal:condition="php: Session::get('isCustomer')" metal:use-macro="./templating/custNav.xhtml/nav_bar">
+    </navReplace>
 
-     <div id="loginDiv">
 
+    <div id="loginDiv">
 
 <!--          ADMIN PROFILE          -->
       <div id="profileContainer" tal:condition="php: Session::get('isLoggedIn')">
         <div id="userProfile" tal:condition="exists:profile">
+          <img id="profile_img" src="./img/profile.png"/>
           <h2>WELCOME BACK!</h2>
-          <span tal:content="profile/username"></span>
-          <span tal:content="profile/firstName"></span>
-          <span tal:content="profile/lastName"></span>
+          <h3 class="profile_name">USERNAME: </h3> <h3 class="profile_name" tal:content="profile/username"></h3><br/>
+          <h3 class="profile_name">FIRST NAME: </h3><h3 class="profile_name" tal:content="profile/firstName"></h3><br/>
+          <h3 class="profile_name">LAST NAME: </h3><h3 class="profile_name" tal:content="profile/lastName"></h3>
           <br/><br/><br/>
         </div>
       </div>
 
+<!--        ADMIN DASHBOARD         -->
+      <div id="MenuContainer" tal:condition="php: Session::get('isLoggedIn')">
+
+        <table id="productEditorTable">
+          <thead>
+            <tr>
+              <th class="product_header">Admin Dashboard</th>
+              <th class="product_header">Description</th>
+              <th class="product_header">Quantity</th>
+              <th class="product_header">Price</th>
+              <th class="product_header">Update</th>
+            </tr>
+          </thead>
+              <tbody id="productsEditor">
+          
+              </tbody>
+        </table>
+      </div>
+
 <!--        CUSTOMER MENU         -->
-      <div id="shoppingCartContainer" tal:condition="php: Session::get('isLoggedIn')">
+      <div id="shoppingCartContainer" tal:condition="php: Session::get('isCustomer')">
 
         <table id="productTable">
-            <thead>
-              <tr>
-                <th id="product_header">MENU</th>
-              </tr>
-            </thead>
-                <tbody id="productslist">
-            
-                </tbody>
+          <thead>
+            <tr>
+              <th id="product_header">MENU</th>
+            </tr>
+          </thead>
+            <tbody id="productslist">
+            </tbody>
            
         </table>
-        <input type="button" value="START CART" class="btn btn-lg btn-default btn-block" id="startCart"/>
-
-<!--          CUSTOMER SHOPPING CART SUMMARY          -->
+        <!--CUSTOMER SHOPPING CART SUMMARY-->
         <div id="cartSummary">
           <h2>Cart Summary</h2>
           <ul id="shoppingCart">
-            <p>You currently don't have anything in your shopping cart!</p>
-            <!--<li data-item-qty="1" data-item-sku="sk-438s3x">Coffee Cup (1) &#160;
-              <input type="button" data-remove-button="remove" value="X"/></li>-->
+            <li>You currently don't have anything in your shopping cart!</li>
           </ul>
           <p id="cartTotal">Total: </p>
           <input type="button" value="CANCEL CART" class="btn btn-lg btn-default" id="cancelCart"/>
           <input type="button" value="PROCEED TO CHECKOUT" class="btn btn-lg btn-default" id="toCheckout"/>
-          <div style="font-size: 8pt;"><i>You'll see taxes and other shipping costs (ha ha) during checkout.</i></div>
 
-          
         </div>
       </div>
 
 <!--          CUSTOMER CHECKOUT          -->
-
-      <div id="customerCheckout">
+      <div id="customerCheckout" tal:condition="php: Session::get('isCustomer')">
         <h2>Delivery Information:</h2>
         <form id="customerCheckoutForm" class="form-checkout">
           <fieldset>
@@ -86,12 +98,12 @@
       </div>
 
 <!--          ADMIN LOGIN          -->
-      <div id="loginFormContainer" class="container" tal:condition="php: !Session::get('isLoggedIn')">
+      <div id="loginFormContainer" class="container" tal:condition="php: !Session::get('isLoggedIn') AND !Session::get('isCustomer')">
         <img id="TI_logo" src="./img/TI_LOGO.png"/>
           
           <form id="loginForm" class="form-signin">
             <fieldset>
-              <h2 id="startCart" class="as_cust">CONTINUE AS CUSTOMER</h2>
+              <h1 id="startCart" class="as_cust">CONTINUE AS CUSTOMER</h1>
               <h3> -- OR -- </h3>
               <h3 id="adminLoginTitle">LOGIN TO CONTINUE AS A REGISTERED ADMIN</h3>
               <div class="input-group">
@@ -116,7 +128,6 @@
             </span>
           </div>      
 
-          
       </div>
 
 <!--          ADMIN LOGOUT          -->
@@ -129,13 +140,16 @@
           </fieldset>
         </form>
       </div>
+
     </div>
 
 
     <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js" integrity="sha384-0mSbJDEHialfmuBBQP6A4Qrprq5OVfW37PRR3j5ELqxss1yVqOtnepnHVP9aJ7xS" crossorigin="anonymous"></script>
+    <script src="./js/shopping_cart.js"></script>
+    <script src="./js/admin.js"></script>
     <script src="./js/main.js"></script>
-      <script src="./js/shopping_cart.js"></script>
+
 
     <footerReplace metal:use-macro="/templating/footer.xhtml/page_footer">
     </footerReplace>

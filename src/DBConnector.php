@@ -1,32 +1,5 @@
 <?php
 
-//require_once('./Messages.php');
-
-//$db = DBConnector::getInstance();
-//var_dump($db);
-
-//$stuff = $db->query("select * from user;");
-//var_dump($stuff);
-
-//$conn = new PDO("mysql:host=localhost;dbname=test", 'root', '');
-//var_dump($conn);
-
-// http://code.tutsplus.com/tutorials/design-patterns-the-singleton-pattern--cms-23073
-// Singleton
-
-/*
-$db = DBConnector::getInstance();
-
-$sql = "insert into student (first_name, last_name) values ('Darth', 'Nader')";
-$id = $db->getTransactionID($sql);
-
-echo "<p>Last id of student addes is $id ... which we can use to grab the last record created:</p>";
-$student = $db->query("select * from student where id = $id");
-
-var_dump($student);
-
-echo Messages::getAllMessagesHTMLList();
-*/
 class DBConnector {
 
     private $dbName = null;

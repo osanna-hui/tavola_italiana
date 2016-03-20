@@ -1,13 +1,9 @@
 <?php
 
-//require_once('./Messages.php');
-
 // Secure Session Manager
 class Session {
 
     public static function init() {
-        // can add a message here if need be
-        //Messages::addMessage("info", "Creating session");
 
         if (session_status() == PHP_SESSION_NONE) {
             session_start();

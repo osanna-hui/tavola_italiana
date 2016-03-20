@@ -13,24 +13,6 @@ $(document).ready(function() {
         return json;
     }
 
-    function customerIn(){
-      $.ajax({
-        url:"./mod/customerIn.php",
-        type:"POST",
-        dataType:"JSON",
-        data:{
-          user_name:"newUser"
-        },
-        success:function(returnedData){
-          
-          location.reload();
-          console.log(returnedData);
-        },
-          error: function(jqXHR, textStatus, errorThrown) {
-              console.log("AJAX Error", textStatus);
-          }
-      });
-    }  
   
     function doLogin() {
 
@@ -38,7 +20,7 @@ $(document).ready(function() {
         console.log("Login data to send: ", formData);
 
         $.ajax({
-            url: "./mod/login.php",
+            url: "./src/login.php",
             type: "POST",
             dataType: "JSON",
             data: formData,
@@ -56,32 +38,12 @@ $(document).ready(function() {
                     }
 
 
-                    /* BTW, IF LOGOUT FAILED, IT'S BECAUSE THE SESSION EXPIRED
-                       YOU COULD EASILY JUST RESET THE HTML IN THE PAGE
-                     */
-
                 } else {
                     // you're in, show profile
                     console.log(returnedData['user']['username']);
                     location.reload();
                     console.log(returnedData);
 
-                    // THIS SECTION HAS TO BE THE SAME AS index.html, LINE 21
-                    /*
-                    $("#profileContainer").html("<div id='userProfile'>"
-                        + "<h2>User Profile (only visible when logged in):</h2>\n"
-                        + "<span><i>login: </i>" + returnedData['user']['username'] + "</span> "
-                        + "<span><i>first name: </i>" + returnedData['user']['firstName'] + "</span> "
-                        + "<span><i>last name: </i>" + returnedData['user']['lastName'] + "</span>"
-                        +"<br/><br/><br/></div>");
-
-                    // remove login form
-                    $("#loginForm").remove();
-
-                    // create logout form
-                    $("#loginFormContainer").after('<div id="logoutFormContainer"><form id="logoutForm"><fieldset><legend>Logout Form</legend><label for="password">Password: </label><input id="logoutbutton" type="button" value="Logout"/><input type="hidden" value="logout" name="logoutButton"/></fieldset></form></div>');
-                    $("#logoutbutton").bind("click", doLogout);
-                    */
                 }
 
 
@@ -97,7 +59,7 @@ $(document).ready(function() {
         //console.log("Logout data to send: ", formData);
 
         $.ajax({
-            url: "./mod/logout.php",
+            url: "./src/logout.php",
             type: "POST",
             dataType: "JSON",
             data: formData,
@@ -114,12 +76,6 @@ $(document).ready(function() {
             }
         });
     }
-
-    
-
-
-    // create customer event
-    $("#startCart").click(customerIn);
   
     // login event
     $("#loginbutton").click(doLogin);
@@ -128,52 +84,21 @@ $(document).ready(function() {
     $("#logoutbutton").click(doLogout);
 
 
-
-/////////////////////////// HOME PAGE //////////////////////////
-
-/*document.getElementById("loginForm").style.display = "none";
-document.getElementById("messages").style.display = "none";
-document.getElementById("as_admin").onclick = function(){
-    document.getElementById("loginForm").style.display = "block";
-    document.getElementById("messages").style.display = "block";
-    document.getElementById("as_admin").style.display = "none";
-}
-*/
-
-
-/////////////////////////// SHOW PROFILE //////////////////////////
-
-    document.getElementById("profile").onclick = function(){
-        document.getElementById('userProfile').style.display = "block";
-        document.getElementById('logoutForm').style.display = "block";
-        document.getElementById('back').style.display = "inline-block";
-        document.getElementById('shoppingCartContainer').style.display = "none";
-        document.getElementById('profile').style.display = "none";
-        document.getElementById('cart').style.display = "none";
-    }
-    document.getElementById("back").onclick = function(){
-        document.getElementById('userProfile').style.display = "none";
-        document.getElementById('logoutForm').style.display = "none";
-        document.getElementById('back').style.display = "none";
-        document.getElementById('shoppingCartContainer').style.display = "block";
-        document.getElementById('profile').style.display = "inline-block";
-        document.getElementById('cart').style.display = "inline-block";
-    }
-
 /////////////////////////// SHOW SHOPPING CART //////////////////////////
 
     document.getElementById("cart").onclick = function(){
+        console.log("CART");
         document.getElementById('cartSummary').style.display = "block";
         document.getElementById('backToMenu').style.display = "inline-block";
         document.getElementById('productTable').style.display = "none";
-        document.getElementById('profile').style.display = "none";
+        //document.getElementById('profile').style.display = "none";
         document.getElementById('cart').style.display = "none";
     }
     document.getElementById("backToMenu").onclick = function(){
         document.getElementById('cartSummary').style.display = "none";
         document.getElementById('backToMenu').style.display = "none";
         document.getElementById('productTable').style.display = "block";
-        document.getElementById('profile').style.display = "inline-block";
+        //document.getElementById('profile').style.display = "inline-block";
         document.getElementById('cart').style.display = "inline-block";
     }
 
@@ -191,5 +116,6 @@ document.getElementById("as_admin").onclick = function(){
         document.getElementById('backToCart').style.display = "none";
         document.getElementById('backToMenu').style.display = "inline-block";
     }
+
 
 });

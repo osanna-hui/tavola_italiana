@@ -1,8 +1,5 @@
 <?php
 
-// Business Delegate
-
-// load all scripts into memory
 require_once('../init.php');
 loadScripts();
 
@@ -14,10 +11,10 @@ loadScripts();
 
             $parameters = new Parameters("POST");
 
-            $CustomerCheckoutAction = new CustomerCheckoutAction();
-            $CustomerCheckoutAction->setParameters($parameters);
+            $customerCheckoutAction = new CustomerCheckoutAction();
+            $customerCheckoutAction->setParameters($parameters);
 
-            $response = $CustomerCheckoutAction->customerCheckout();
+            $response = $customerCheckoutAction->customerCheckout();
 
             if($response) {
 
