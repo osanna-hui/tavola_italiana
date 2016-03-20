@@ -16,10 +16,16 @@ loadScripts();
             $desc = $row['description'];
             $img = $row['item_img'];
             $qty = $row['item_qnty'];
+
+            $color = "";
+            if ($qty <5){
+                $color = "red";
+            }
+
             $html .= "<tr>
                         <td data-sku-img='$img'><img class='product_img' src='$img'/></td>
                         <td><input data-sku-desc='$sku'value='$desc'/></td>
-                        <td><input data-sku-qty='$sku' type='number' value='$qty' min='1' max='20' step='1'/></td>
+                        <td><input data-sku-qty='$sku' type='number' value='$qty' min='1' max='20' step='1' style='color:$color'/></td>
                         <td><input data-sku-price='$sku' value='$price'/></td>
                         <td><input data-sku-sub='$sku' type='button' value='Submit Update' class='btn btn-md btn-default sub_admin_update'/></td>
                       </tr>";
