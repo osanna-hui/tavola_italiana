@@ -50,6 +50,7 @@ $(document).ready(function() {
 
         // if nothing added leave function
         if(cartData == null) {
+            //document.getElementById("cartEmpty").innerHTML = "You don't have anything in your cart!";
             return;
         }
         var cartDataItems = cartData['items'];
@@ -67,9 +68,12 @@ $(document).ready(function() {
             var img = item['img'];
             var subtotal = parseFloat(Math.round((qty * price) * 100) / 100).toFixed(2);
 
+            /*var item = "<li data-item-sku='" + sku + "' data-item-qty='" + qty + "' data-item-date='"
+                + date + "'>" + desc + " <input data-sku-qty='" + qty + "' type='number' value='" + qty + "' min='1' max='20' step='1' id='quantity'/> " + " x $" + price + " = $" + subtotal
+                + " <input type='button' id='updateCartBut' value='Update Quantity'/> " + " <input id='remove' type='button' data-remove-button='remove' value='Remove'/></li>";*/
             var item = "<li data-item-sku='" + sku + "' data-item-qty='" + qty + "' data-item-date='"
-                + date + "'>" + desc + " <input data-sku-qty='" + qty + "' type='number' value='" + qty + "' min='1' max='20' step='1' id='quantity'/><input type='button' id='updateCartBut' value='Update'/> " + " x $" + price + " = " + subtotal
-                + " <input id='remove' type='button' data-remove-button='remove' value='X'/></li>";
+                + date + "'>" + desc + " <input data-sku-qty='" + sku + "' type='number' value='" + qty + "' min='1' max='20' step='1' id='quantity'/> " + " x $" + price + " = $" + subtotal
+                + " <input data-sku-update='" + sku + "' type='button' id='updateCartBut' value='Update Quantity' class='btn btn-md btn-default sub_admin_update'/> " + " <input id='remove' type='button' data-remove-button='remove' value='Remove' class='btn btn-md btn-default sub_admin_update'/></li>";
             shoppingCartList.append(item);
             /*var button = document.createElement('input');
             button.setAttribute("type", button);
@@ -102,9 +106,12 @@ $(document).ready(function() {
 
         // ALTERED FOR WEB STORAGE
         var aDate = new Date();
+        /*var item = "<li data-item-sku='" + sku + "' data-item-qty='" + qty + "' data-item-date='"
+            + aDate.getTime() + "'>" + desc + " <input data-sku-qty='" + qty + "' type='number' value='" + qty + "' min='1' max='20' step='1' id='quantity'/>" + " x $" + price + " = $" + subtotal
+            + " <input type='button' id='updateCartBut' value='Update Quantity'/> " + " <input id='remove' type='button' data-remove-button='remove' value='Remove'/></li>";*/
         var item = "<li data-item-sku='" + sku + "' data-item-qty='" + qty + "' data-item-date='"
-            + aDate.getTime() + "'>" + desc + " <input data-sku-qty='" + qty + "' type='number' value='" + qty + "' min='1' max='20' step='1' id='quantity'/> " + " x $" + price + " = " + subtotal
-            + " <input id='remove' type='button' data-remove-button='remove' value='X'/></li>";
+            + aDate.getTime() + "'>" + desc + " <input data-sku-qty='" + sku + "' type='number' value='" + qty + "' min='1' max='20' step='1' id='quantity'/>" + " x $" + price + " = $" + subtotal
+            + " <input data-sku-update='" + sku + "' type='button' id='updateCartBut' value='Update Quantity' class='btn btn-md btn-default sub_admin_update'/> " + " <input id='remove' type='button' data-remove-button='remove' value='Remove' class='btn btn-md btn-default sub_admin_update'/></li>";
         shoppingCartList.append(item);
 
         // SESSION STORAGE - SAVE SKU AND QTY AS AN OBJECT IN THE
@@ -306,7 +313,7 @@ $(document).ready(function() {
     });
     
     // update the cart
-    $("#updateCartBut").click(function(){
+    /*$("#updateCartBut").click(function(){
         
         // retrieve all of the items from the cart:
         var items = $("#shoppingCart li");
@@ -319,6 +326,59 @@ $(document).ready(function() {
         });
         var itemsAsJSON = JSON.stringify(itemArray);
         console.log("itemsAsJSON", itemsAsJSON);
+    });*/
+    
+    $('#shoppingCart').on('click', 'input[data-sku-update]', function() {
+        //console.log(this.getAttribute("data-sku-update"));
+
+        // get the sku
+        var sku = this.getAttribute("data-sku-update");
+        var qty = $("input[data-sku-qty='" + sku + "']").val();
+        var price = $("td[data-sku-price='" + sku + "']").text();
+        var desc = $("td[data-sku-desc='" + sku + "']").text();
+        var subtotal = parseFloat(Math.round((qty * price) * 100) / 100).toFixed(2);
+        console.log(desc, "quantity", qty, "price", price);
+        alert("Item added to shopping cart");
+
+        var shoppingCartList = $("#shoppingCart");
+
+
+        // ALTERED FOR WEB STORAGE
+        var aDate = new Date();
+        var item = "<li data-item-sku='" + sku + "' data-item-qty='" + qty + "' data-item-date='"
+            + aDate.getTime() + "'>" + desc + " <input data-sku-qty='" + sku + "' type='number' value='" + qty + "' min='1' max='20' step='1' id='quantity'/>" + " x $" + price + " = $" + subtotal
+            + " <input data-sku-sub='" + sku + "' type='button' id='updateCartBut' value='Update Quantity' class='btn btn-md btn-default sub_admin_update'/> " + " <input id='remove' type='button' data-remove-button='remove' value='Remove' class='btn btn-md btn-default sub_admin_update'/></li>";
+        //shoppingCartList.append(item);
+
+        // SESSION STORAGE - SAVE SKU AND QTY AS AN OBJECT IN THE
+        // ARRAY INSIDE OF THE AUTOSAVE OBJECT
+        var cartData = sessionStorage.getObject('autosave');
+        if(cartData == null) {
+            return;
+        }
+        var item = {'sku': sku, 'qty': qty, date: aDate.getTime(), 'desc': desc, 'price': price};
+        cartData['items'].push(item);
+        // clobber the old value
+        sessionStorage.setObject('autosave', cartData);
+
+//letting user know that item's been added
+/*
+        var alert = document.createElement("div");
+        alert.id = "alert";
+        alert.innerHTML = "Item Added To Cart!";
+        var alert_ok = document.createElement("button");
+        alert_ok.innerHTML = "OK!";
+        alert.appendChild(alert_ok);
+        document.body.appendChild(alert);
+        alert.style.display = "none";
+
+        $(alert).fadeIn();
+        alert_ok.onclick = function(){
+          $(alert).fadeOut();
+        }
+*/
+
+
     });
 
 
