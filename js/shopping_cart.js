@@ -245,70 +245,70 @@ $(document).ready(function() {
 
         console.log("itemsAsJSON", itemsAsJSON);
 
-
         console.log("Check out cart with the following items", itemArray);
-
 
         $.ajax({
             url: "./src/shoppingcart.php",
             type: "POST",
             dataType: 'json',
-            data: {action: "checkoutcart", items: itemsAsJSON},
+            data: {action: "checkQty", items: itemsAsJSON},
             success: function(returnedData) {
-                console.log("cart check out response: ", returnedData);
+                console.log("check qty response: ", returnedData);
 
-            },
-            error: function(jqXHR, textStatus, errorThrown) {
-                console.log(jqXHR.statusText, textStatus);
-            }
-        });
-        var shoppingCartList = $("#shoppingCart").html("");
-
-        // add customer info into db
-        //var formData = ConvertFormToJSON("#customerCheckoutForm");
-        //console.log(formData);
-        $.ajax({
-            url:"./src/customerCheckout.php",
-            type:"POST",
-            dataType:"html",
-            data:{
-                firstname:document.getElementById("custFirstName").value,
-                lastname:document.getElementById("custLastName").value,
-                phone:document.getElementById("custPhone").value,
-                email:document.getElementById("custEmail").value,
-                address:document.getElementById("custAddress").value,
-                city:document.getElementById("custCity").value,
-            },
-            success: function(returnedData) {
-                console.log("Checked Out");
-                location.reload();
-
-            },
-            error: function(jqXHR, textStatus, errorThrown) {
-                console.log(jqXHR.statusText, textStatus);
-            }
-        });
-
-/*
-//s
-            $.ajax({
-                  url:"./src/customerIn.php",
-                  type:"POST",
-                  dataType:"JSON",
-                  data:{
-                    user_name:"newUser",
-                  },
-                  success:function(returnedData){
-                    
+                if (returnedData['status'] == 'alert'){
+                    alert("We don't have enough of what you are trying to order!<br/>We only have "+returnedData.msg[0].item_qnty+" orders of "+returnedData.msg[0].description);
                     location.reload();
-                    console.log(returnedData);
-                  },
-                    error: function(jqXHR, textStatus, errorThrown) {
-                        console.log("AJAX Error", textStatus);
-                    }
-                });
+                } else if (returnedData['status'] == 'success'){
+                    console.log("OK");
 
-*/
+                    $.ajax({
+                        url: "./src/shoppingcart.php",
+                        type: "POST",
+                        dataType: 'json',
+                        data: {action: "checkoutcart", items: itemsAsJSON},
+                        success: function(returnedData) {
+                            console.log("cart check out response: ", returnedData);
+
+                        },
+                        error: function(jqXHR, textStatus, errorThrown) {
+                            console.log(jqXHR.statusText, textStatus);
+                        }
+                    });
+                    var shoppingCartList = $("#shoppingCart").html("");
+
+                    // add customer info into db
+                    
+                    $.ajax({
+                        url:"./src/customerCheckout.php",
+                        type:"POST",
+                        dataType:"html",
+                        data:{
+                            firstname:document.getElementById("custFirstName").value,
+                            lastname:document.getElementById("custLastName").value,
+                            phone:document.getElementById("custPhone").value,
+                            email:document.getElementById("custEmail").value,
+                            address:document.getElementById("custAddress").value,
+                            city:document.getElementById("custCity").value,
+                        },
+                        success: function(returnedData) {
+                            console.log("Checked Out");
+                            location.reload();
+
+                        },
+                        error: function(jqXHR, textStatus, errorThrown) {
+                            console.log(jqXHR.statusText, textStatus);
+                        }
+                    });
+
+
+                }
+
+
+            },
+            error: function(jqXHR, textStatus, errorThrown) {
+                console.log(jqXHR.statusText, textStatus);
+            }
+        });
 
     });
     

@@ -26,6 +26,20 @@ class ShoppingCartManager {
         return $count;
     }
 
+    public function checkQty($items, $cart_id) {
+        foreach($items as $item) {
+            $sku = $item['sku'];
+            $qty = $item['qty'];
+            //return $qty;
+
+            $sql = "SELECT * FROM product WHERE item_qnty < '$qty' AND SKU = '$sku'";
+            $rows = $this->db->query($sql);
+            return $rows;
+            
+        }
+
+    }
+
     public function checkoutCart($id) {
         $sql = "UPDATE cart SET state = 'checked out' WHERE ID = $id";
         $count = $this->db->affectRows($sql);

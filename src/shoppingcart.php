@@ -113,7 +113,25 @@ loadScripts();
                 }
                 break;
 
+            case "checkQty":
+                if(!isset($_SESSION['started'])) {
+                    $data = array("status" => "fail", "msg" => "There is no cart to check out.");
+                    echo json_encode($data, JSON_FORCE_OBJECT);
+                    return;
+                }
 
+                $items = json_decode($_POST['items'], true);
+
+                $productQTY = $scm->checkQty($items, $_SESSION['cart_id']);
+
+                if ($productQTY != null){
+                    $data = array("status" => "alert", "msg" => $productQTY);
+                } else {
+                    $data = array("status" => "success", "msg" => $productQTY);
+                }
+
+                //$data = array("status" => "success", "msg" => $productQTY);
+                break;
         }
 
 
