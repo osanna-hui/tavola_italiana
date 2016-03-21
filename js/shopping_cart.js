@@ -74,7 +74,7 @@ $(document).ready(function() {
                 + " <input type='button' id='updateCartBut' value='Update Quantity'/> " + " <input id='remove' type='button' data-remove-button='remove' value='Remove'/></li>";*/
             var item = "<li data-item-sku='" + sku + "' data-item-qty='" + qty + "' data-item-date='"
                 + date + "'>" + desc + " <input data-sku-cartqty='" + sku + "' type='number' value='" + qty + "' min='1' max='20' step='1' id='quantity'/> " + " x $" + price + " = $" + subtotal
-                + " <input data-sku-update='" + sku + "' type='button' id='updateCartBut' value='Update Quantity' class='btn btn-md btn-default sub_admin_update'/> " + " <input id='remove' type='button' data-remove-button='remove' value='Remove' class='btn btn-md btn-default sub_admin_update'/></li>";
+                + " <input data-sku-update='" + sku + "' type='button' id='updateCartBut' value='Update Quantity' class='btn btn-md btn-default sub_admin_update' data-remove-button='remove'/> " + " <input id='remove' type='button' data-remove-button='remove' value='Remove' class='btn btn-md btn-default sub_admin_update'/></li>";
             shoppingCartList.append(item);
             /*var button = document.createElement('input');
             button.setAttribute("type", button);
@@ -136,7 +136,7 @@ $(document).ready(function() {
             + " <input type='button' id='updateCartBut' value='Update Quantity'/> " + " <input id='remove' type='button' data-remove-button='remove' value='Remove'/></li>";*/
         var item = "<li data-item-sku='" + sku + "' data-item-qty='" + qty + "' data-item-date='"
             + aDate.getTime() + "'>" + desc + " <input data-sku-cartqty='" + sku + "' type='number' value='" + qty + "' min='1' max='20' step='1' id='quantity'/>" + " x $" + price + " = $" + subtotal
-            + " <input data-sku-update='" + sku + "' type='button' id='updateCartBut' value='Update Quantity' class='btn btn-md btn-default sub_admin_update'/> " + " <input id='remove' type='button' data-remove-button='remove' value='Remove' class='btn btn-md btn-default sub_admin_update'/></li>";
+            + " <input data-sku-update='" + sku + "' type='button' id='updateCartBut' value='Update Quantity' class='btn btn-md btn-default sub_admin_update' data-remove-button='remove'/> " + " <input id='remove' type='button' data-remove-button='remove' value='Remove' class='btn btn-md btn-default sub_admin_update'/></li>";
         shoppingCartList.append(item);
 
         // SESSION STORAGE - SAVE SKU AND QTY AS AN OBJECT IN THE
@@ -375,11 +375,6 @@ $(document).ready(function() {
         var itemsAsJSON = JSON.stringify(itemArray);
         console.log("itemsAsJSON", itemsAsJSON);
     });*/
-
-
-    });
-
-
 
 
 });
