@@ -67,12 +67,13 @@ $(document).ready(function() {
             var desc = item['desc'];
             var img = item['img'];
             var subtotal = parseFloat(Math.round((qty * price) * 100) / 100).toFixed(2);
+            subtotal.id = "subtotal";
 
             /*var item = "<li data-item-sku='" + sku + "' data-item-qty='" + qty + "' data-item-date='"
                 + date + "'>" + desc + " <input data-sku-qty='" + qty + "' type='number' value='" + qty + "' min='1' max='20' step='1' id='quantity'/> " + " x $" + price + " = $" + subtotal
                 + " <input type='button' id='updateCartBut' value='Update Quantity'/> " + " <input id='remove' type='button' data-remove-button='remove' value='Remove'/></li>";*/
             var item = "<li data-item-sku='" + sku + "' data-item-qty='" + qty + "' data-item-date='"
-                + date + "'>" + desc + " <input data-sku-qty='" + sku + "' type='number' value='" + qty + "' min='1' max='20' step='1' id='quantity'/> " + " x $" + price + " = $" + subtotal
+                + date + "'>" + desc + " <input data-sku-cartqty='" + sku + "' type='number' value='" + qty + "' min='1' max='20' step='1' id='quantity'/> " + " x $" + price + " = $" + subtotal
                 + " <input data-sku-update='" + sku + "' type='button' id='updateCartBut' value='Update Quantity' class='btn btn-md btn-default sub_admin_update'/> " + " <input id='remove' type='button' data-remove-button='remove' value='Remove' class='btn btn-md btn-default sub_admin_update'/></li>";
             shoppingCartList.append(item);
             /*var button = document.createElement('input');
@@ -83,9 +84,32 @@ $(document).ready(function() {
             
             shoppingCartList.append(button);*/
 
-
         }
+        
         console.log('cart items array, added', cartDataItems);
+        
+        $('#shoppingCart').on('click', 'input[data-sku-update]', function() {
+            console.log(this.getAttribute("data-sku-update"));
+            var sku = this.getAttribute("data-sku-update");
+            var qty = $("input[data-sku-cartqty='" + sku + "']").val();
+            var price = $("td[data-sku-price='" + sku + "']").text();
+            var desc = $("td[data-sku-desc='" + sku + "']").text();
+            var subtotal = parseFloat(Math.round((qty * price) * 100) / 100).toFixed(2);
+            subtotal.id = "subtotal";
+            console.log(desc, "quantity:", qty, "price: ", price, "subtotal: ", subtotal);
+            //document.getElementById("subtotal").innerHTML = "Item was changed";
+            $("#subtotal").text("asd");
+            
+            var cartData = sessionStorage.getObject('autosave');
+            if(cartData == null) {
+                return;
+            }
+            var item = {'sku': sku, 'qty': qty, 'desc': desc, 'price': price};
+            cartData['items'].push(item);
+            // clobber the old value
+            sessionStorage.setObject('autosave', cartData);
+        });
+        
     }
     loadShoppingCartItems();
 
@@ -98,6 +122,7 @@ $(document).ready(function() {
         var price = $("td[data-sku-price='" + sku + "']").text();
         var desc = $("td[data-sku-desc='" + sku + "']").text();
         var subtotal = parseFloat(Math.round((qty * price) * 100) / 100).toFixed(2);
+        subtotal.id = "subtotal";
         console.log(desc, "quantity", qty, "price", price);
         alert("Item added to shopping cart");
 
@@ -110,7 +135,7 @@ $(document).ready(function() {
             + aDate.getTime() + "'>" + desc + " <input data-sku-qty='" + qty + "' type='number' value='" + qty + "' min='1' max='20' step='1' id='quantity'/>" + " x $" + price + " = $" + subtotal
             + " <input type='button' id='updateCartBut' value='Update Quantity'/> " + " <input id='remove' type='button' data-remove-button='remove' value='Remove'/></li>";*/
         var item = "<li data-item-sku='" + sku + "' data-item-qty='" + qty + "' data-item-date='"
-            + aDate.getTime() + "'>" + desc + " <input data-sku-qty='" + sku + "' type='number' value='" + qty + "' min='1' max='20' step='1' id='quantity'/>" + " x $" + price + " = $" + subtotal
+            + aDate.getTime() + "'>" + desc + " <input data-sku-cartqty='" + sku + "' type='number' value='" + qty + "' min='1' max='20' step='1' id='quantity'/>" + " x $" + price + " = $" + subtotal
             + " <input data-sku-update='" + sku + "' type='button' id='updateCartBut' value='Update Quantity' class='btn btn-md btn-default sub_admin_update'/> " + " <input id='remove' type='button' data-remove-button='remove' value='Remove' class='btn btn-md btn-default sub_admin_update'/></li>";
         shoppingCartList.append(item);
 
@@ -124,6 +149,29 @@ $(document).ready(function() {
         cartData['items'].push(item);
         // clobber the old value
         sessionStorage.setObject('autosave', cartData);
+        
+        //update the item quantity
+        $('#shoppingCart').on('click', 'input[data-sku-update]', function() {
+            console.log(this.getAttribute("data-sku-update"));
+            var sku = this.getAttribute("data-sku-update");
+            var qty = $("input[data-sku-cartqty='" + sku + "']").val();
+            var price = $("td[data-sku-price='" + sku + "']").text();
+            var desc = $("td[data-sku-desc='" + sku + "']").text();
+            var subtotal = parseFloat(Math.round((qty * price) * 100) / 100).toFixed(2);
+            subtotal.id = "subtotal";
+            console.log(desc, "quantity:", qty, "price: ", price, "subtotal: ", subtotal);
+            //document.getElementById("subtotal").innerHTML = "Item was changed";
+            $("#subtotal").text("asd");
+            
+            var cartData = sessionStorage.getObject('autosave');
+            if(cartData == null) {
+                return;
+            }
+            var item = {'sku': sku, 'qty': qty, date: aDate.getTime(), 'desc': desc, 'price': price};
+            //cartData['items'].push(item);
+            // clobber the old value
+            sessionStorage.setObject('autosave', cartData);
+        });
 
 //letting user know that item's been added
 /*
