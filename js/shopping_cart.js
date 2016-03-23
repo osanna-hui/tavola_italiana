@@ -303,11 +303,44 @@ $(document).ready(function() {
             success: function(returnedData) {
                 console.log("check qty response: ", returnedData);
 
+
                 if (returnedData['status'] == 'alert'){
-                    alert("We don't have enough of what you are trying to order!<br/>We only have "+returnedData.msg[0].item_qnty+" orders of "+returnedData.msg[0].description);
+                    /*
+                    var div = document.createElement("div");
+                    div.id = "alert";
+                    document.body.appendChild(div);
+                    var span = document.createElement("span");
+                    span.innerHTML = "We don't have enough of what you are trying to order! We only have: <br/>"
+                    div.appendChild(span);
+                    var list = document.createElement("ul");
+                    div.appendChild(list);
+                    
+                    for (i=0; i<returnedData.msg.length; i++){
+                        var qty = returnedData.msg[i].item_qnty;
+                        var desc = returnedData.msg[0].description;
+                        var listItems = document.createElement("li");
+                        listItems.innerHTML = qty+" orders of "+desc;
+                        list.appendChild(listItems);
+                    }
+                    var close = document.createElement("button");
+                    close.innerHTML = "OK";
+                    div.appendChild(close);
+
+                    close.onclick = function(){
+                        div.removeChild(span);
+                        div.removeChild(list);
+                        div.removeChild(close);
+                        document.body.removeChild(div);
+                        location.reload();
+                    }
+                    */
+
+                    alert("We don't have enough of what you are trying to order!! We only have "+returnedData.msg[0].item_qnty+" orders of "+returnedData.msg[0].description);
                     location.reload();
+
+                    
                 } else if (returnedData['status'] == 'success'){
-                    console.log("OK");
+                    console.log("You can now checkout your shopping cart!");
 
                     $.ajax({
                         url: "./src/shoppingcart.php",
@@ -316,6 +349,7 @@ $(document).ready(function() {
                         data: {action: "checkoutcart", items: itemsAsJSON},
                         success: function(returnedData) {
                             console.log("cart check out response: ", returnedData);
+
 
                         },
                         error: function(jqXHR, textStatus, errorThrown) {
@@ -340,6 +374,7 @@ $(document).ready(function() {
                         },
                         success: function(returnedData) {
                             console.log("Checked Out");
+                            alert("You order has been successfully processed! Thank you!");
                             location.reload();
 
                         },
