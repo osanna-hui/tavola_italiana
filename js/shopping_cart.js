@@ -42,7 +42,12 @@ $(document).ready(function() {
         });
         return json;
     }
-
+    
+    /*var cartData = "";
+    var cartDataItems = "";
+    var cartData = sessionStorage.getObject('autosave');
+    var cartDataItems = cartData['items'];
+    var item = cartDataItems[i];*/
     // SESSION STORAGE GET ITEMS IF THEY ALREADY EXIST IN SESSION STORAGE
     function loadShoppingCartItems() {
 
@@ -69,6 +74,7 @@ $(document).ready(function() {
             var subtotal = parseFloat(Math.round((qty * price) * 100) / 100).toFixed(2);
             subtotal.id = "subtotal";
 
+            var aDate = new Date();
             /*var item = "<li data-item-sku='" + sku + "' data-item-qty='" + qty + "' data-item-date='"
                 + date + "'>" + desc + " <input data-sku-qty='" + qty + "' type='number' value='" + qty + "' min='1' max='20' step='1' id='quantity'/> " + " x $" + price + " = $" + subtotal
                 + " <input type='button' id='updateCartBut' value='Update Quantity'/> " + " <input id='remove' type='button' data-remove-button='remove' value='Remove'/></li>";*/
@@ -88,9 +94,11 @@ $(document).ready(function() {
         
         console.log('cart items array, added', cartDataItems);
         
-        $('#shoppingCart').on('click', 'input[data-sku-update]', function() {
+        /*$('#shoppingCart').on('click', 'input[data-sku-update]', function() {
             console.log(this.getAttribute("data-sku-update"));
+            //console.log(cartData);
             var sku = this.getAttribute("data-sku-update");
+            //var date = item['date'];
             var qty = $("input[data-sku-cartqty='" + sku + "']").val();
             var price = $("td[data-sku-price='" + sku + "']").text();
             var desc = $("td[data-sku-desc='" + sku + "']").text();
@@ -98,7 +106,6 @@ $(document).ready(function() {
             subtotal.id = "subtotal";
             console.log(desc, "quantity:", qty, "price: ", price, "subtotal: ", subtotal);
             //document.getElementById("subtotal").innerHTML = "Item was changed";
-            $("#subtotal").text("asd");
             
             var cartData = sessionStorage.getObject('autosave');
             if(cartData == null) {
@@ -108,7 +115,35 @@ $(document).ready(function() {
             cartData['items'].push(item);
             // clobber the old value
             sessionStorage.setObject('autosave', cartData);
-        });
+            
+            //remove outdated item object
+            var thisInputSKU = this.parentNode.getAttribute('data-item-sku');
+            var thisInputQty = this.parentNode.getAttribute('data-item-qty');
+            var thisInputDate = this.parentNode.getAttribute('data-item-date');
+
+            var cartData = sessionStorage.getObject('autosave');
+            if(cartData == null) {
+                return;
+            }
+            var cartDataItems = cartData['items'];
+            for(var i = 0; i < cartDataItems.length; i++) {
+                var item = cartDataItems[i];
+                // get the item based on the sku, qty, and date
+                if(item['sku'] == thisInputSKU && item['date'] == thisInputDate) {
+                    // remove from web storage
+                    cartDataItems.splice(i, 1);
+
+                }
+            }
+            cartData['items'] = cartDataItems;
+            console.log('cart data stuff', cartData);
+            // clobber the old value
+            sessionStorage.setObject('autosave', cartData);
+
+            this.closest("li").remove();
+            //location.reload(true);
+            //history.go(0);
+        });*/
         
     }
     loadShoppingCartItems();
@@ -161,16 +196,44 @@ $(document).ready(function() {
             subtotal.id = "subtotal";
             console.log(desc, "quantity:", qty, "price: ", price, "subtotal: ", subtotal);
             //document.getElementById("subtotal").innerHTML = "Item was changed";
-            $("#subtotal").text("asd");
             
             var cartData = sessionStorage.getObject('autosave');
             if(cartData == null) {
                 return;
             }
             var item = {'sku': sku, 'qty': qty, date: aDate.getTime(), 'desc': desc, 'price': price};
-            //cartData['items'].push(item);
+            cartData['items'].push(item);
             // clobber the old value
             sessionStorage.setObject('autosave', cartData);
+            
+            //remove outdated item object
+            var thisInputSKU = this.parentNode.getAttribute('data-item-sku');
+            var thisInputQty = this.parentNode.getAttribute('data-item-qty');
+            var thisInputDate = this.parentNode.getAttribute('data-item-date');
+
+            var cartData = sessionStorage.getObject('autosave');
+            if(cartData == null) {
+                return;
+            }
+            var cartDataItems = cartData['items'];
+            for(var i = 0; i < cartDataItems.length; i++) {
+                var item = cartDataItems[i];
+                // get the item based on the sku, qty, and date
+                if(item['sku'] == thisInputSKU && item['date'] == thisInputDate) {
+                    // remove from web storage
+                    cartDataItems.splice(i, 1);
+
+                }
+            }
+            cartData['items'] = cartDataItems;
+            console.log('cart data stuff', cartData);
+            // clobber the old value
+            sessionStorage.setObject('autosave', cartData);
+
+            this.closest("li").remove();
+            alert("Your item quantity has been updated!");
+            location.reload(true);
+            //history.go(0);
         });
 
 //letting user know that item's been added
@@ -189,7 +252,6 @@ $(document).ready(function() {
           $(alert).fadeOut();
         }
 */
-
 
     });
 
@@ -356,7 +418,7 @@ $(document).ready(function() {
                             console.log(jqXHR.statusText, textStatus);
                         }
                     });
-                    
+                    var shoppingCartList = $("#shoppingCart").html("");
 
                     // add customer info into db
                     
@@ -373,7 +435,6 @@ $(document).ready(function() {
                             city:document.getElementById("custCity").value,
                         },
                         success: function(returnedData) {
-                            console.log(returnedData);
                             console.log("Checked Out");
                             alert("You order has been successfully processed! Thank you!");
                             location.reload();
@@ -383,7 +444,6 @@ $(document).ready(function() {
                             console.log(jqXHR.statusText, textStatus);
                         }
                     });
-                    var shoppingCartList = $("#shoppingCart").html("");
 
 
                 }

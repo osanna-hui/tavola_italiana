@@ -75,11 +75,12 @@ class ShoppingCartManager {
         foreach($items as $item) {
             $sku = $item['sku'];
             $qty = $item['qty'];
+            $date = $item['date'];
             
             //$sql = "SELECT ID FROM product WHERE SKU = '$sku'";
             $rows = $this->db->query($sql);
             $product_id = $rows[0]['ID'];
-            $sql = "UPDATE cart_product SET quantity = $qty WHERE SKU = $sku";
+            $sql = "UPDATE cart_product SET quantity = $qty, time = $date WHERE SKU = $sku";
             $this->db->affectRows($sql);
         }
     }
