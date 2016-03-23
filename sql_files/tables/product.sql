@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: localhost:8889
--- Generation Time: Feb 22, 2016 at 08:04 PM
+-- Generation Time: Mar 24, 2016 at 12:18 AM
 -- Server version: 5.5.42
 -- PHP Version: 5.6.10
 
@@ -34,7 +34,7 @@ CREATE TABLE `product` (
 --
 
 INSERT INTO `product` (`ID`, `SKU`, `item_price`, `description`, `item_qnty`, `item_img`) VALUES
-(1, 'SK-1111A', '12.99', 'Caprese Salad', '20', 'img/caprese.jpg'),
+(1, 'SK-1111A', '12.99', 'Caprese Salad', '19', 'img/caprese.jpg'),
 (2, 'SK-1112A', '6.99', 'Caesar Salad', '20', 'img/caesar_salad.jpg'),
 (3, 'SK-1114A', '16.99', 'Bruschetta Sampler', '20', 'img/bruschetta_sampler.jpg'),
 (4, 'SK-1116A', '9.99', 'Beef Carpaccio', '20', 'img/beef_carpaccio.jpg'),

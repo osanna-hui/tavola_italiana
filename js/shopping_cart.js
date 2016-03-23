@@ -339,7 +339,7 @@ $(document).ready(function() {
                     location.reload();
 
                     
-                } else if (returnedData['status'] == 'success'){
+                } else {
                     console.log("You can now checkout your shopping cart!");
 
                     $.ajax({
@@ -356,14 +356,14 @@ $(document).ready(function() {
                             console.log(jqXHR.statusText, textStatus);
                         }
                     });
-                    var shoppingCartList = $("#shoppingCart").html("");
+                    
 
                     // add customer info into db
                     
                     $.ajax({
                         url:"./src/customerCheckout.php",
                         type:"POST",
-                        dataType:"html",
+                        dataType:"json",
                         data:{
                             firstname:document.getElementById("custFirstName").value,
                             lastname:document.getElementById("custLastName").value,
@@ -373,6 +373,7 @@ $(document).ready(function() {
                             city:document.getElementById("custCity").value,
                         },
                         success: function(returnedData) {
+                            console.log(returnedData);
                             console.log("Checked Out");
                             alert("You order has been successfully processed! Thank you!");
                             location.reload();
@@ -382,6 +383,7 @@ $(document).ready(function() {
                             console.log(jqXHR.statusText, textStatus);
                         }
                     });
+                    var shoppingCartList = $("#shoppingCart").html("");
 
 
                 }
