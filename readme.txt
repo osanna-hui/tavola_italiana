@@ -30,5 +30,6 @@ Summary of things that didn't go as expected:
 
 
 Things we will do differently next time:
+	- When we encounter something that doesn't work the way it should, look at everything that is connected to that externally as well. Not just what's inside of it.
 
-
+	
