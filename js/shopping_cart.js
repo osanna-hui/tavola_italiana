@@ -189,19 +189,20 @@ $(document).ready(function() {
         $('#shoppingCart').on('click', 'input[data-sku-update]', function() {
             console.log(this.getAttribute("data-sku-update"));
             var sku = this.getAttribute("data-sku-update");
-            var qty = $("input[data-sku-cartqty='" + sku + "']").val();
+            var qty = $(this).parent().find('input[id="quantity"]').val();
             var price = $("td[data-sku-price='" + sku + "']").text();
             var desc = $("td[data-sku-desc='" + sku + "']").text();
             var subtotal = parseFloat(Math.round((qty * price) * 100) / 100).toFixed(2);
             subtotal.id = "subtotal";
-            console.log(desc, "quantity:", qty, "price: ", price, "subtotal: ", subtotal);
+            //console.log(desc, "quantity:", qty, "price: ", price, "subtotal: ", subtotal);
             //document.getElementById("subtotal").innerHTML = "Item was changed";
             
             var cartData = sessionStorage.getObject('autosave');
             if(cartData == null) {
                 return;
             }
-            var item = {'sku': sku, 'qty': qty, date: aDate.getTime(), 'desc': desc, 'price': price};
+            var item = {'sku': sku, 'qty': parseInt(qty, 10), date: aDate.getTime(), 'desc': desc, 'price': price};
+            console.log('the item', item);
             cartData['items'].push(item);
             // clobber the old value
             sessionStorage.setObject('autosave', cartData);
@@ -209,6 +210,7 @@ $(document).ready(function() {
             //remove outdated item object
             var thisInputSKU = this.parentNode.getAttribute('data-item-sku');
             var thisInputQty = this.parentNode.getAttribute('data-item-qty');
+            thisInputQty = parseInt(thisInputQty, 10);
             var thisInputDate = this.parentNode.getAttribute('data-item-date');
 
             var cartData = sessionStorage.getObject('autosave');
@@ -347,7 +349,7 @@ $(document).ready(function() {
         $.each(items, function(key, value) {
 
             var item = {sku: value.getAttribute("data-item-sku"),
-                qty: value.getAttribute("data-item-qty")};
+                qty: parseInt(value.getAttribute("data-item-cartqty"), 10)};
             itemArray.push(item);
         });
         itemArray.shift();
