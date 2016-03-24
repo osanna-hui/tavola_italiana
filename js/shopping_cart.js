@@ -94,7 +94,7 @@ $(document).ready(function() {
         
         console.log('cart items array, added', cartDataItems);
         
-        /*$('#shoppingCart').on('click', 'input[data-sku-update]', function() {
+        $('#shoppingCart').on('click', 'input[data-sku-update]', function() {
             console.log(this.getAttribute("data-sku-update"));
             //console.log(cartData);
             var sku = this.getAttribute("data-sku-update");
@@ -143,7 +143,7 @@ $(document).ready(function() {
             this.closest("li").remove();
             //location.reload(true);
             //history.go(0);
-        });*/
+        });
         
     }
     loadShoppingCartItems();
